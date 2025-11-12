@@ -1,59 +1,134 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Contato</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="bg-black text-light">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary sticky-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold text-uppercase text-success" href="index.html">Dinossauros</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="triassico.html">Triássico</a></li>
-        <li class="nav-item"><a class="nav-link" href="jurassico.html">Jurássico</a></li>
-        <li class="nav-item"><a class="nav-link" href="cretaceo.html">Cretáceo</a></li>
-        <li class="nav-item"><a class="nav-link" href="espinossauro.html">Espinossauro</a></li>
-        <li class="nav-item"><a class="nav-link active" href="formulario.html">Contato</a></li>
-      </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-uppercase text-success" href="index.html">Dinossauros</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="triassico.html">Triássico</a></li>
+          <li class="nav-item"><a class="nav-link" href="jurassico.html">Jurássico</a></li>
+          <li class="nav-item"><a class="nav-link" href="cretaceo.html">Cretáceo</a></li>
+          <li class="nav-item"><a class="nav-link" href="espinossauro.html">Espinossauro</a></li>
+          <li class="nav-item"><a class="nav-link active" href="formulario.html">Contato</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<main class="container py-5">
-  <h1 class="text-center text-success mb-4">Fale Conosco</h1>
-  <form id="formContato" class="bg-dark p-4 rounded shadow-lg">
-    <div class="mb-3">
-      <label for="nome" class="form-label text-secondary">Nome:</label>
-      <input type="text" id="nome" class="form-control bg-black text-light border-secondary" required>
+  <main class="container py-5">
+    <h1 class="text-center text-success">Fale Conosco</h1>
+    <p class="text-center text-success mb-4">Encontrou um meteorito ou fóssil de dinossauro?</p>
+    <form id="formContato" class="bg-dark p-4 rounded shadow-lg">
+
+      <!-- Exemplos -->
+      <div class="accordion bg-dark" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+              Exemplo de descrição recomendada
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <b>Fóssil:</b> Fóssil encontrado em rochas sedimentar de coloração bege, com formato espiralado de 6 cm,
+              lembrando
+              conchas de amonita. A textura é lisa e dura, indicando mineralização. Pode datar do período Jurrássico.
+              <code><br></code>
+              <b>Meteorito:</b> Rocha escura, de 12 cm, muito densa e com forte atração magnética. Apresenta crosta de
+              fusão negra e
+              interior metálico acinzentado. Características compatíveis com meteorito do tipo ferroso.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Exemplo de fotos recomendadas
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="div-accordion-align">
+
+                <div class="col">
+                  <img src="img/meteorito-bom.jpeg" alt="Foto super detalhada de um Meteorito" class="img-fluid">
+                     <img src="img/certo.png" alt="Foto de um simbolo de correto" class="img-fluid">
+                </div>
+
+                <div class="col">
+                  <img src="img/meteoro-ruim.jpeg" alt="Foto de um meteoro entrando na atmosfera terrestre" class="img-fluid">
+                  <img src="img/errado.png" alt="Foto de um simbolo de errado" class="img-fluid" style="height: 40vh;">
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Accordion Item #3
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the collapse
+              plugin adds the appropriate classes that we use to style each element. These classes control the overall
+              appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
+              CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the
+              <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="mb-3">
+        <label for="nome" class="form-label text-secondary">Nome:</label>
+        <input type="text" id="nome" class="form-control bg-black text-light border-secondary" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label text-secondary">Email:</label>
+        <input type="email" id="email" class="form-control bg-black text-light border-secondary" required>
+      </div>
+      <!-- Comentario -->
+      <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Deixe aqui sua descrição" id="mensagem"
+          style="height: 50px"></textarea>
+        <label for="mensagem">Descrição</label>
+      </div>
+
+      <button type="submit" class="btn btn-success">Enviar</button>
+    </form>
+
+    <div id="mensagemSucesso" class="alert alert-success mt-3 d-none">
+      Mensagem enviada com sucesso! 🦕
     </div>
-    <div class="mb-3">
-      <label for="email" class="form-label text-secondary">Email:</label>
-      <input type="email" id="email" class="form-control bg-black text-light border-secondary" required>
-    </div>
-    <div class="mb-3">
-      <label for="mensagem" class="form-label text-secondary">Mensagem:</label>
-      <textarea id="mensagem" rows="4" class="form-control bg-black text-light border-secondary" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-success">Enviar</button>
-  </form>
+  </main>
 
-  <div id="mensagemSucesso" class="alert alert-success mt-3 d-none">
-    Mensagem enviada com sucesso! 🦕
-  </div>
-</main>
+  <footer class="text-center py-4 bg-black border-top border-secondary text-secondary">
+    <p>© 2025 Mundo dos Dinossauros</p>
+  </footer>
 
-<footer class="text-center py-4 bg-black border-top border-secondary text-secondary">
-  <p>© 2025 Mundo dos Dinossauros</p>
-</footer>
-
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
+
 </html>
