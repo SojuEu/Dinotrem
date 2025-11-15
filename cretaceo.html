@@ -1,81 +1,250 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-bs-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <title>Período Cretáceo</title>
+
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
-<body class="bg-black text-light">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary sticky-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold text-uppercase text-success" href="index.html">Dinossauros</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="triassico.html">Triássico</a></li>
-        <li class="nav-item"><a class="nav-link" href="jurassico.html">Jurássico</a></li>
-        <li class="nav-item"><a class="nav-link active" href="cretaceo.html">Cretáceo</a></li>
-        <li class="nav-item"><a class="nav-link" href="espinossauro.html">Espinossauro</a></li>
-        <li class="nav-item"><a class="nav-link" href="formulario.html">Contato</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<body>
 
-<header class="hero text-center" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/5/5e/Cretaceous_landscape.jpg'); background-size:cover; height:90vh;">
-  <div class="bg-dark bg-opacity-50 h-100 d-flex flex-column justify-content-center align-items-center">
-    <h1 class="display-4 fw-bold text-success">Período Cretáceo</h1>
-    <p class="text-secondary">145 a 66 milhões de anos atrás — o fim da era dos dinossauros.</p>
-  </div>
-</header>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg shadow-sm fixed-top" id="mainNavbar">
+    <div class="container py-2">
+      <a class="navbar-brand fw-bold text-uppercase text-success fs-3" href="index.html">Dinossauros</a>
 
-<main class="container py-5">
-  <p class="text-secondary text-center mb-5">
-    O <strong>Cretáceo</strong> foi o último período da era Mesozoica. 
-    O planeta estava coberto por vastos mares e florestas tropicais, e espécies icônicas como o 
-    <em>Tyrannosaurus rex</em> e o <em>Triceratops</em> dominaram as terras. 
-    O fim do Cretáceo foi marcado pela queda de um asteroide, causando a extinção em massa que encerrou a era dos dinossauros.
-  </p>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card bg-dark border-0 shadow-lg h-100">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Tyrannosaurus_Rex_Holotype.jpg" class="card-img-top" alt="Tyrannosaurus rex">
-        <div class="card-body">
-          <h5 class="card-title text-success">Tyrannosaurus Rex</h5>
-          <p class="text-secondary">Um dos maiores predadores terrestres que já existiu, com dentes do tamanho de bananas.</p>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link px-3" href="triassico.html">Triássico</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="jurassico.html">Jurássico</a></li>
+          <li class="nav-item"><a class="nav-link active px-3" href="cretaceo.html">Cretáceo</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="espinossauro.html">Espinossauro</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="formulario.html">Contato</a></li>
+        </ul>
+
+        <!-- Botão tema -->
+        <div class="dropdown ms-lg-3 mt-3 mt-lg-0">
+          <button class="btn btn-outline-success dropdown-toggle" id="themeToggle" type="button"
+            data-bs-toggle="dropdown">
+            <i class="bi bi-circle-half"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button class="dropdown-item" data-theme="auto">Padrão do sistema</button></li>
+            <li><button class="dropdown-item" data-theme="light">Claro</button></li>
+            <li><button class="dropdown-item" data-theme="dark">Escuro</button></li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card bg-dark border-0 shadow-lg h-100">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Triceratops_BW.jpg" class="card-img-top" alt="Triceratops">
-        <div class="card-body">
-          <h5 class="card-title text-success">Triceratops</h5>
-          <p class="text-secondary">Herbívoro de três chifres, usava sua gola óssea para defesa e exibição.</p>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero d-flex align-items-center justify-content-center text-center text-light" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/5/5e/Cretaceous_landscape.jpg');
+         background-size:cover; background-position:center; height:90vh;">
+    <div class="bg-dark bg-opacity-50 w-100 h-100 d-flex flex-column justify-content-center">
+      <h1 class="display-3 fw-bold">Período Cretáceo</h1>
+      <p class="lead text-secondary">145 a 66 milhões de anos atrás — o auge e o fim da era dos dinossauros.</p>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <main class="container py-5 mt-5 text-light">
+
+    <h2 class="text-success text-center mb-4">O Último Ato da Era Mesozoica</h2>
+
+    <p class="text-secondary fs-5 text-center mb-5">
+      O <strong>Cretáceo</strong> foi o período mais diversificado da história dos dinossauros.
+      Florestas tropicais, desertos extensos, mares internos e um clima instável moldaram
+      espécies icônicas como o <em>Tyrannosaurus rex</em>, <em>Triceratops</em>,
+      <em>Velociraptor</em> e muitos outros.
+      <br><br>
+      Este período terminou de forma dramática com a queda de um asteroide de 10 km,
+      causando uma das maiores extinções em massa já registradas.
+    </p>
+
+    <div class="text-center mb-5">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Cretaceous_Seaway.jpg"
+        class="img-fluid rounded shadow" alt="Cretáceo">
+    </div>
+
+    <!-- DINOSSAUROS -->
+    <h2 class="text-success text-center my-5">Principais Dinossauros do Cretáceo</h2>
+
+    <div class="row g-4">
+
+      <!-- T-REX -->
+      <div class="col-md-4">
+        <div class="card periodo-card h-100 shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Tyrannosaurus_Rex_Holotype.jpg"
+            class="card-img-top" alt="Tyrannosaurus rex">
+          <div class="card-body">
+            <h5 class="card-title text-success">Tyrannosaurus rex</h5>
+            <p class="text-secondary">O predador mais famoso da história, dono de uma mordida 4x mais forte que a de um
+              crocodilo.</p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> 12 a 13 metros</li>
+              <li><strong>Peso:</strong> 8 a 10 toneladas</li>
+              <li><strong>Curiosidade:</strong> podia correr a até 27 km/h.</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card bg-dark border-0 shadow-lg h-100">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Velociraptor_BW.jpg" class="card-img-top" alt="Velociraptor">
-        <div class="card-body">
-          <h5 class="card-title text-success">Velociraptor</h5>
-          <p class="text-secondary">Pequeno e inteligente caçador emplumado, provavelmente caçava em bandos.</p>
+
+      <!-- TRICERATOPS -->
+      <div class="col-md-4">
+        <div class="card periodo-card h-100 shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Triceratops_BW.jpg" class="card-img-top"
+            alt="Triceratops">
+          <div class="card-body">
+            <h5 class="card-title text-success">Triceratops</h5>
+            <p class="text-secondary">Herbívoro robusto com três chifres e uma gola óssea poderosa.</p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> 8 a 9 metros</li>
+              <li><strong>Peso:</strong> até 12 toneladas</li>
+              <li><strong>Curiosidade:</strong> podia atingir 30 km/h.</li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <!-- VELOCIRAPTOR -->
+      <div class="col-md-4">
+        <div class="card periodo-card h-100 shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Velociraptor_BW.jpg" class="card-img-top"
+            alt="Velociraptor">
+          <div class="card-body">
+            <h5 class="card-title text-success">Velociraptor</h5>
+            <p class="text-secondary">Pequeno, ágil e inteligente — e totalmente emplumado.</p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> 2 metros</li>
+              <li><strong>Curiosidade:</strong> suas garras podiam rasgar carne com facilidade.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
-</main>
 
-<footer class="text-center py-4 bg-black border-top border-secondary text-secondary">
-  <p>© 2025 Mundo dos Dinossauros</p>
-</footer>
+    <!-- SEGUNDA LINHA -->
+    <div class="row g-4 mt-4">
 
-<script src="js/bootstrap.bundle.min.js"></script>
+      <!-- SPINOSAURUS -->
+      <div class="col-md-4">
+        <div class="card periodo-card h-100 shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Spinosaurus_swimming.jpg" class="card-img-top"
+            alt="Spinosaurus">
+          <div class="card-body">
+            <h5 class="card-title text-success">Spinosaurus</h5>
+            <p class="text-secondary">Um dos maiores predadores já registrados — e um dos poucos semiaquáticos.</p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> até 15 metros</li>
+              <li><strong>Peso:</strong> até 7 toneladas</li>
+              <li><strong>Curiosidade:</strong> caçava peixes gigantes em deltas e manguezais.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANKYLOSAURUS -->
+      <div class="col-md-4">
+        <div class="card periodo-card h-100 shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Ankylosaurus_dinosaur.png" class="card-img-top"
+            alt="Ankylosaurus">
+          <div class="card-body">
+            <h5 class="card-title text-success">Ankylosaurus</h5>
+            <p class="text-secondary">O “tanque de guerra” dos dinossauros, com corpo blindado e cauda em forma de
+              clava.</p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> 6 a 8 metros</li>
+              <li><strong>Curiosidade:</strong> sua cauda podia quebrar ossos de predadores.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PTERANODON -->
+      <div class="col-md-4">
+        <div class="card periodo-card h-100 shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Pteranodon_longiceps_2.jpg" class="card-img-top"
+            alt="Pteranodon">
+          <div class="card-body">
+            <h5 class="card-title text-success">Pteranodon</h5>
+            <p class="text-secondary">Gigante dos céus, dominou as regiões costeiras do Cretáceo.</p>
+            <ul class="text-secondary small">
+              <li><strong>Envergadura:</strong> 6 metros</li>
+              <li><strong>Curiosidade:</strong> não era um dinossauro, mas sim um pterossauro.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-5 pt-5 pb-4 text-light" style="background: linear-gradient(90deg,#3a5f43,#a57b43);">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-3 mb-4">
+          <h4 class="fw-bold"><i class="bi bi-globe-americas"></i> Mesozoic Era Explorer</h4>
+          <p class="small">
+            © 2024 Mesozoic Era Explorer. Explore o fascinante mundo dos dinossauros e da paleontologia.
+          </p>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Períodos</h5>
+          <ul class="list-unstyled small">
+            <li><a href="triassico.html" class="text-light text-decoration-none">Triássico</a></li>
+            <li><a href="jurassico.html" class="text-light text-decoration-none">Jurássico</a></li>
+            <li><a href="cretaceo.html" class="text-light text-decoration-none">Cretáceo</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Recursos</h5>
+          <ul class="list-unstyled small">
+            <li>Enciclopédia</li>
+            <li>Votação do Mês</li>
+            <li>Contato</li>
+            <li>Submissões</li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Informações</h5>
+          <ul class="list-unstyled small">
+            <li><i class="bi bi-journal-text"></i> Conteúdo científico</li>
+            <li><i class="bi bi-mortarboard"></i> Material educativo</li>
+            <li><i class="bi bi-people"></i> Comunidade</li>
+            <li><i class="bi bi-globe"></i> Acesso mundial</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="border-light" />
+
+      <p class="text-center small">
+        <i class="bi bi-heart-fill text-danger"></i> Educação • Ciência • Descoberta
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+
 </body>
+
 </html>

@@ -1,81 +1,285 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-bs-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <title>Período Triássico</title>
+
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary sticky-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold text-uppercase text-success" href="index.html">Dinossauros</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="triassico.html">Triássico</a></li>
-        <li class="nav-item"><a class="nav-link" href="jurassico.html">Jurássico</a></li>
-        <li class="nav-item"><a class="nav-link" href="cretaceo.html">Cretáceo</a></li>
-        <li class="nav-item"><a class="nav-link" href="espinossauro.html">Espinossauro</a></li>
-        <li class="nav-item"><a class="nav-link" href="formulario.html">Contato</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg shadow-sm fixed-top" id="mainNavbar">
+    <div class="container py-2">
+      <a class="navbar-brand fw-bold text-uppercase text-success fs-3" href="index.html">Dinossauros</a>
 
-<header class="hero d-flex align-items-center justify-content-center text-center text-light" 
-style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Triassic_landscape.jpg'); background-size:cover;">
-  <div class="container">
-    <h1 class="display-4 fw-bold">Período Triássico</h1>
-    <p class="lead text-secondary">252 a 201 milhões de anos atrás — o nascimento dos dinossauros.</p>
-  </div>
-</header>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<main class="container py-5 text-light">
-  <p class="text-center text-secondary mb-5">
-    O <strong>Triássico</strong> foi o primeiro período da Era Mesozoica. Após a maior extinção em massa da história, 
-    a Terra começou a se recuperar. Os primeiros dinossauros surgiram neste tempo, pequenos e rápidos predadores 
-    que dividiam o mundo com ancestrais dos mamíferos e répteis gigantes.
-  </p>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link active px-3" href="triassico.html">Triássico</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="jurassico.html">Jurássico</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="cretaceo.html">Cretáceo</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="espinossauro.html">Espinossauro</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="formulario.html">Contato</a></li>
+        </ul>
 
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card bg-dark border-0 shadow-lg h-100">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Eoraptor_lunensis.jpg" class="card-img-top" alt="Eoraptor">
-        <div class="card-body">
-          <h5 class="card-title text-success">Eoraptor</h5>
-          <p class="text-secondary">Um dos primeiros dinossauros conhecidos, pequeno e ágil caçador de insetos e pequenos vertebrados.</p>
+        <!-- Botão de tema -->
+        <div class="dropdown ms-lg-3 mt-3 mt-lg-0">
+          <button class="btn btn-outline-success dropdown-toggle" type="button" id="themeToggle"
+            data-bs-toggle="dropdown">
+            <i class="bi bi-circle-half"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button class="dropdown-item" data-theme="auto">Padrão do sistema</button></li>
+            <li><button class="dropdown-item" data-theme="light">Claro</button></li>
+            <li><button class="dropdown-item" data-theme="dark">Escuro</button></li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card bg-dark border-0 shadow-lg h-100">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Plateosaurus_1DB.jpg" class="card-img-top" alt="Plateosaurus">
-        <div class="card-body">
-          <h5 class="card-title text-success">Plateossauro</h5>
-          <p class="text-secondary">Um dos primeiros herbívoros de grande porte, ancestral dos gigantes do Jurássico.</p>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero d-flex align-items-center justify-content-center text-center text-light"
+    style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Triassic_landscape.jpg'); background-size:cover; background-position:center;">
+    <div class="container">
+      <h1 class="display-3 fw-bold">Período Triássico</h1>
+      <p class="lead text-secondary">252 a 201 milhões de anos atrás — o nascimento dos dinossauros.</p>
+    </div>
+  </header>
+
+  <!-- INTRODUÇÃO -->
+  <main class="container py-5 mt-5 text-light">
+
+    <h2 class="text-success text-center mb-4">O Surgimento dos Dinossauros</h2>
+
+    <p class="text-secondary fs-5 text-center mb-5">
+      O <strong>Triássico</strong> marcou o início da Era Mesozoica. Após a maior extinção em massa já registrada, a
+      Terra
+      passou por uma fase de reconstrução ecológica. Os primeiros dinossauros surgiram nesse cenário — pequenos,
+      ágeis e ainda longe dos gigantes famosos do Jurássico e do Cretáceo. A vida começava a se reorganizar, e novas
+      espécies de répteis, sinapsídeos e arcossauros moldaram o planeta.
+    </p>
+
+    <!-- SEÇÃO: HISTÓRIA DO TRIÁSSICO -->
+    <section class="mb-5">
+      <h3 class="text-success mb-3">Como Era o Mundo no Triássico?</h3>
+
+      <p class="text-secondary">
+        Durante o Triássico, todos os continentes estavam unidos na supercontinente <strong>Pangeia</strong>. O clima
+        era
+        quente e seco, com vastos desertos e poucas florestas densas. A vida animal incluía não apenas os primeiros
+        dinossauros, mas também répteis marinhos primitivos, grandes anfíbios e arcossauros que futuramente dariam
+        origem aos crocodilos.
+      </p>
+
+      <p class="text-secondary">
+        Os dinossauros apareceram cerca de <strong>231 milhões de anos atrás</strong>, mas no início não eram
+        dominantes.
+        Eles competiam com diversos predadores e herbívoros que hoje são pouco lembrados, mas que foram fundamentais
+        para o equilíbrio ecológico da época.
+      </p>
+
+      <div class="text-center mt-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Triassic_fauna.jpg"
+          class="img-fluid rounded shadow" alt="Vida no Triássico">
+      </div>
+    </section>
+
+    <!-- LISTA DE DINOSSAUROS DO TRIÁSSICO -->
+    <h2 class="text-center text-success my-5">Principais Dinossauros do Triássico</h2>
+
+    <div class="row g-4">
+
+      <!-- EORAPTOR -->
+      <div class="col-md-4">
+        <div class="card bg-dark border-0 shadow-lg h-100">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Eoraptor_lunensis.jpg" class="card-img-top"
+            alt="Eoraptor">
+          <div class="card-body">
+            <h5 class="card-title text-success">Eoraptor</h5>
+            <p class="text-secondary">
+              Considerado um dos primeiros dinossauros verdadeiros, viveu há cerca de 231 milhões de anos na região que
+              hoje é a Argentina. Era pequeno, leve e possuía hábitos omnívoros.
+            </p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> 1 metro</li>
+              <li><strong>Alimentação:</strong> insetos e pequenos vertebrados</li>
+              <li><strong>Curiosidade:</strong> Seu nome significa “Ladrão da Madrugada”.</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card bg-dark border-0 shadow-lg h-100">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Herrerasaurus_BW.jpg" class="card-img-top" alt="Herrerasaurus">
-        <div class="card-body">
-          <h5 class="card-title text-success">Herrerasaurus</h5>
-          <p class="text-secondary">Predador veloz e forte, viveu na América do Sul e dominava as planícies do Triássico.</p>
+
+      <!-- PLATEOSAURUS -->
+      <div class="col-md-4">
+        <div class="card bg-dark border-0 shadow-lg h-100">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Plateosaurus_1DB.jpg" class="card-img-top"
+            alt="Plateosaurus">
+          <div class="card-body">
+            <h5 class="card-title text-success">Plateossauro</h5>
+            <p class="text-secondary">
+              Um dos primeiros grandes herbívoros do planeta e ancestral dos gigantes saurópodes do Jurássico. Possuía
+              pescoço longo e postura semi-bípede.
+            </p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> 8 a 10 metros</li>
+              <li><strong>Peso:</strong> até 4 toneladas</li>
+              <li><strong>Curiosidade:</strong> Várias carcaças foram encontradas juntas indicando possível
+                comportamento em grupo.</li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <!-- HERRERASAURUS -->
+      <div class="col-md-4">
+        <div class="card bg-dark border-0 shadow-lg h-100">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Herrerasaurus_BW.jpg" class="card-img-top"
+            alt="Herrerasaurus">
+          <div class="card-body">
+            <h5 class="card-title text-success">Herrerasaurus</h5>
+            <p class="text-secondary">
+              Um dos primeiros grandes predadores do período, rápido e altamente adaptado para caça. Viveu na América
+              do Sul e é um dos mais antigos carnívoros dinossaurianos.
+            </p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> 3 a 4 metros</li>
+              <li><strong>Comportamento:</strong> possivelmente caçava em pequenos grupos</li>
+              <li><strong>Curiosidade:</strong> Sua anatomia é um “meio termo” entre dinossauros primitivos e evoluídos.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
-</main>
 
-<footer class="text-center py-4 bg-black border-top border-secondary text-secondary">
-  <p>© 2025 Mundo dos Dinossauros</p>
-</footer>
+    <!-- MAIS DINOSSAUROS -->
+    <div class="row g-4 mt-4">
 
-<script src="js/bootstrap.bundle.min.js"></script>
+      <!-- COELOPHYSIS -->
+      <div class="col-md-4">
+        <div class="card bg-dark border-0 shadow-lg h-100">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Coelophysis_BW.jpg" class="card-img-top"
+            alt="Coelophysis">
+          <div class="card-body">
+            <h5 class="card-title text-success">Coelophysis</h5>
+            <p class="text-secondary">Um dos primeiros terópodes, leve e extremamente veloz, conhecido por enormes
+              grupos fossilizados.</p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> até 3 metros</li>
+              <li><strong>Comportamento:</strong> vivia em bandos grandes</li>
+              <li><strong>Curiosidade:</strong> Fósseis mostram possível canibalismo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MELANOROSAURUS -->
+      <div class="col-md-4">
+        <div class="card bg-dark border-0 shadow-lg h-100">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Melanorosaurus_BW.jpg" class="card-img-top"
+            alt="Melanorosaurus">
+          <div class="card-body">
+            <h5 class="card-title text-success">Melanorosaurus</h5>
+            <p class="text-secondary">
+              Um dos primeiros prosaurópodes realmente grandes, com peso que já se aproxima dos gigantes posteriores.
+            </p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> até 12 metros</li>
+              <li><strong>Alimentação:</strong> estritamente herbívoro</li>
+              <li><strong>Curiosidade:</strong> Pode ter sido um dos maiores animais terrestres de seu tempo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAUROSAURUS (exemplo) -->
+      <div class="col-md-4">
+        <div class="card bg-dark border-0 shadow-lg h-100">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Staurikosaurus.jpg" class="card-img-top"
+            alt="Staurikosaurus">
+          <div class="card-body">
+            <h5 class="card-title text-success">Staurikosaurus</h5>
+            <p class="text-secondary">
+              Pequeno predador brasileiro, um dos mais antigos dinossauros carnívoros já descobertos.
+            </p>
+            <ul class="text-secondary small">
+              <li><strong>Tamanho:</strong> cerca de 2 metros</li>
+              <li><strong>Descoberto em:</strong> Rio Grande do Sul</li>
+              <li><strong>Curiosidade:</strong> Um dos primeiros dinossauros descritos na América do Sul.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-5 pt-5 pb-4 text-light" style="background: linear-gradient(90deg,#3a5f43,#a57b43);">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-3 mb-4">
+          <h4 class="fw-bold"><i class="bi bi-globe-americas"></i> Mesozoic Era Explorer</h4>
+          <p class="small">
+            © 2024 Mesozoic Era Explorer. Explore o fascinante mundo dos dinossauros e da paleontologia.
+          </p>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Períodos</h5>
+          <ul class="list-unstyled small">
+            <li><a href="triassico.html" class="text-light text-decoration-none">Triássico</a></li>
+            <li><a href="jurassico.html" class="text-light text-decoration-none">Jurássico</a></li>
+            <li><a href="cretaceo.html" class="text-light text-decoration-none">Cretáceo</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Recursos</h5>
+          <ul class="list-unstyled small">
+            <li>Enciclopédia</li>
+            <li>Votação do Mês</li>
+            <li>Contato</li>
+            <li>Submissões</li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Informações</h5>
+          <ul class="list-unstyled small">
+            <li><i class="bi bi-journal-text"></i> Conteúdo científico</li>
+            <li><i class="bi bi-mortarboard"></i> Material educativo</li>
+            <li><i class="bi bi-people"></i> Comunidade</li>
+            <li><i class="bi bi-globe"></i> Acesso mundial</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="border-light" />
+
+      <p class="text-center small">
+        <i class="bi bi-heart-fill text-danger"></i> Educação • Ciência • Descoberta
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+
 </body>
+
 </html>
