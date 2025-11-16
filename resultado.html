@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Resultado</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <button id="btnPdf" style="padding:10px 20px; margin:20px 0;">Baixar PDF</button>
+
+    <h2>Dados Recebidos</h2>
+    <p><strong>Nome:</strong> <span id="nome"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Mensagem:</strong></p>
+    <p id="mensagem"></p>
+
+    <h3>Imagens enviadas:</h3>
+    <div id="imgs"></div>
+
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const chave = params.get('key');
+
+            if (!chave) {
+                document.body.innerHTML = '<h2>Chave não informada.</h2>';
+                return;
+            }
+
+            const raw = localStorage.getItem(chave);
+            if (!raw) {
+                document.body.innerHTML = '<h2>Dados não encontrados.</h2>';
+                return;
+            }
+
+            const dados = JSON.parse(raw);
+
+            document.getElementById('nome').textContent = dados.nome;
+            document.getElementById('email').textContent = dados.email;
+            document.getElementById('mensagem').textContent = dados.mensagem;
+
+            const div = document.getElementById('imgs');
+            dados.imagens.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.style.maxWidth = "200px";
+                img.style.margin = "10px";
+                div.appendChild(img);
+            });
+
+            // Apaga os dados após ler — opcional mas recomendado
+            // localStorage.removeItem(chave);
+        })();
+
+        // script do pdf
+
+        document.getElementById("btnPdf").addEventListener("click", async () => {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+
+            // Coleta os dados da página
+            const nome = document.getElementById("nome").textContent;
+            const email = document.getElementById("email").textContent;
+            const mensagem = document.getElementById("mensagem").textContent;
+
+            pdf.setFontSize(18);
+            pdf.text("Relatório do Contato", 14, 20);
+
+            pdf.setFontSize(12);
+            pdf.text("Nome: " + nome, 14, 40);
+            pdf.text("Email: " + email, 14, 50);
+
+            pdf.text("Descrição:", 14, 65);
+
+            // Quebra a mensagem em linhas automáticas
+            const linhas = pdf.splitTextToSize(mensagem, 180);
+            pdf.text(linhas, 14, 75);
+
+            // Posição inicial para imagens
+            let y = 95;
+
+            // Pega todas as imagens exibidas
+            const imgs = document.querySelectorAll("#imgs img");
+
+            for (const img of imgs) {
+                // Converte para base64 (já está base64)
+                const base64 = img.src;
+
+                // Dimensões da imagem no PDF
+                const largura = 60;
+                const altura = 60;
+
+                // Se passar do limite da página, cria página nova
+                if (y + altura > 280) {
+                    pdf.addPage();
+                    y = 20;
+                }
+
+                pdf.addImage(base64, "PNG", 14, y, largura, altura);
+                y += altura + 10; // espaço entre imagens
+            }
+
+            pdf.save("relatorio.pdf");
+        });
+    </script>
+
+    // opcional: apagar os dados do sessionStorage após exibir
+    // sessionStorage.removeItem(chave);
+    })();
+    </script>
+</body>
+
+</html>

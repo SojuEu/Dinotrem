@@ -157,3 +157,14 @@ html[data-bs-theme="dark"] header h1,
 html[data-bs-theme="dark"] h1.page-title {
   color: #ffffff !important;
 }
+
+.titulo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:auto;
+  color: white;
+  font-size:xx-large;
+  background-color: rgb(4, 97, 39);
+  border-radius: 40px;
+}

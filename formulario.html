@@ -6,6 +6,17 @@
   <title>Contato</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  
+
+  <style>
+    a {
+      background-image: url('imagem.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+
 </head>
 
 <body class="bg-black text-light">
@@ -34,7 +45,7 @@
     <form id="formContato" class="bg-dark p-4 rounded shadow-lg">
 
       <!-- Exemplos -->
-      <div class="accordion bg-dark" id="accordionExample">
+      <div class="accordion bg-dark mb-4" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
@@ -67,18 +78,19 @@
 
                 <div class="col">
                   <img src="img/meteorito-bom.jpeg" alt="Foto super detalhada de um Meteorito" class="img-fluid">
-                     <img src="img/certo.png" alt="Foto de um simbolo de correto" class="img-fluid">
+                  <img src="img/certo.png" alt="Foto de um simbolo de correto" class="img-fluid">
                 </div>
 
                 <div class="col">
-                  <img src="img/meteoro-ruim.jpeg" alt="Foto de um meteoro entrando na atmosfera terrestre" class="img-fluid">
+                  <img src="img/meteoro-ruim.jpeg" alt="Foto de um meteoro entrando na atmosfera terrestre"
+                    class="img-fluid">
                   <img src="img/errado.png" alt="Foto de um simbolo de errado" class="img-fluid" style="height: 40vh;">
                 </div>
               </div>
-
             </div>
           </div>
         </div>
+
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -99,8 +111,10 @@
       </div>
 
 
-
-      <div class="mb-3">
+      <div class="titulo">
+        <h2 class="p-3">Preencha o Formulário</h2>
+      </div>
+      <div class="mb-3 mt-3">
         <label for="nome" class="form-label text-secondary">Nome:</label>
         <input type="text" id="nome" class="form-control bg-black text-light border-secondary" required>
       </div>
@@ -115,9 +129,19 @@
         <label for="mensagem">Descrição</label>
       </div>
 
+      <!-- ARQUIVOS -->
+
+      <div class="mb-3">
+        <input class="form-control" type="file" id="imagens" multiple>
+      </div>
+
+
+      
+      <button type="reset" class="btn btn-warning">Limpar</button>
       <button type="submit" class="btn btn-success">Enviar</button>
     </form>
 
+    
     <div id="mensagemSucesso" class="alert alert-success mt-3 d-none">
       Mensagem enviada com sucesso! 🦕
     </div>
@@ -127,8 +151,47 @@
     <p>© 2025 Mundo dos Dinossauros</p>
   </footer>
 
+  <script>
+    document.getElementById("formContato").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      // Abre a aba imediatamente (necessário para não ser bloqueado)
+      const novaAba = window.open("resultado.html");
+
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const mensagem = document.getElementById("mensagem").value;
+      const arquivos = document.getElementById("imagens").files;
+
+      const imagensBase64 = [];
+      for (let i = 0; i < arquivos.length; i++) {
+        const base64 = await new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(arquivos[i]);
+        });
+        imagensBase64.push(base64);
+      }
+
+      const dados = { nome, email, mensagem, imagens: imagensBase64 };
+
+      // CHAVE GLOBAL ENTRE ABAS — FUNCIONA!
+      const chave = 'formdata_' + Date.now();
+
+      // Salva no LOCALSTORAGE
+      localStorage.setItem(chave, JSON.stringify(dados));
+
+      // Redireciona a aba já aberta com a key
+      novaAba.location.href = "resultado.html?key=" + encodeURIComponent(chave);
+    });
+  </script>
+
+
+
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/script.js"></script>
+
 </body>
 
 </html>
