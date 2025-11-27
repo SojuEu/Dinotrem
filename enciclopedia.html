@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dinotrem - Enciclopédia Completa de Dinossauros">
+    <title>Dinotrem | Enciclopédia de Dinossauros</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dinosaur_fossils.jpg/1280px-Dinosaur_fossils.jpg') center/cover no-repeat !important;
+            height: 50vh;
+            min-height: 400px;
+        }
+
+        .dino-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .dino-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--bs-success) !important;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .periodo-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+
+        .modal-dinosaur-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .dino-stats {
+            background: rgba(var(--bs-success-rgb), 0.1);
+            border-radius: 0.5rem;
+            padding: 1.2rem;
+            border-left: 4px solid var(--bs-success);
+        }
+
+        .filter-btn.active {
+            background-color: var(--bs-success) !important;
+            border-color: var(--bs-success) !important;
+            color: white !important;
+        }
+
+        .card-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .dino-card:hover .card-img-container img {
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--bs-secondary);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Corrigindo as bordas dos cards */
+        .periodo-card {
+            border: none !important;
+            background: var(--bs-body-bg);
+        }
+
+        .periodo-card .card-body {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+        <div class="container py-2">
+            <a class="navbar-brand fw-bold text-uppercase text-success fs-3" href="index.html">
+                <i class="bi bi-tree-fill me-2"></i>Dinotrem
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link px-3" href="triassico.html">Triássico</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="jurassico.html">Jurássico</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="cretaceo.html">Cretáceo</a></li>
+                    <li class="nav-item"><a class="nav-link active px-3" href="enciclopedia.html">Enciclopédia</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="dino-mes.html">Dinossauro do Mês</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="formulario.html">Contato</a></li>
+                </ul>
+
+                <div class="dropdown ms-lg-3 mt-3 mt-lg-0">
+                    <button class="btn btn-outline-success dropdown-toggle" type="button" id="themeToggle"
+                        data-bs-toggle="dropdown">
+                        <i class="bi bi-circle-half"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item" data-theme="auto">Padrão do sistema</button></li>
+                        <li><button class="dropdown-item" data-theme="light">Claro</button></li>
+                        <li><button class="dropdown-item" data-theme="dark">Escuro</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero d-flex align-items-center justify-content-center text-center text-white">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Enciclopédia de Dinossauros</h1>
+            <p class="lead fs-4 mb-4">Explore todos os dinossauros da Era Mesozoica</p>
+            <p class="mb-5">Descubra informações detalhadas sobre mais de 20 espécies fascinantes</p>
+        </div>
+    </header>
+
+    <main class="container py-5 mt-4">
+
+        <!-- BARRA DE PESQUISA E FILTROS -->
+        <section class="mb-5">
+            <div class="search-box">
+                <div class="input-group">
+                    <span class="input-group-text bg-success text-white border-success">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control border-success" id="searchInput"
+                        placeholder="Pesquisar dinossauro...">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+                <button class="btn btn-outline-success active filter-btn" data-filter="all">Todos</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="triassico">Triássico</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="jurassico">Jurássico</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="cretaceo">Cretáceo</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="carnivoro">Carnívoros</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="herbivoro">Herbívoros</button>
+                <button class="btn btn-outline-success filter-btn" data-filter="onivoro">Onívoros</button>
+            </div>
+        </section>
+
+        <!-- CARDS DOS DINOSSAUROS -->
+        <section class="mb-5">
+            <div class="row g-4" id="dinoGrid">
+                <!-- Os cards serão gerados via JavaScript -->
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <i class="bi bi-search"></i>
+                <h3>Nenhum dinossauro encontrado</h3>
+                <p>Tente ajustar seus filtros ou termos de pesquisa</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-5 pt-5 pb-4 text-light" style="background: linear-gradient(90deg,#1a472a,#2d4a2d);">
+
+        <div class="container">
+            <div class="row">
+
+                <!-- LOGO / SOBRE -->
+                <div class="col-md-3 mb-4">
+                    <h4 class="fw-bold"><i class="bi bi-tree-fill me-2"></i>Dinotrem</h4>
+                    <p class="small">
+                        © 2024 Dinotrem. Todos os direitos reservados.
+                        Explore o fascinante mundo dos dinossauros e da paleontologia.
+                    </p>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-2"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-light me-2"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-light me-2"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-youtube fs-5"></i></a>
+                    </div>
+                </div>
+
+                <!-- PERÍODOS -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="fw-bold mb-3">Períodos</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="triassico.html" class="text-light text-decoration-none">Triássico (252–201 Ma)</a>
+                        </li>
+                        <li><a href="jurassico.html" class="text-light text-decoration-none">Jurássico (201–145 Ma)</a>
+                        </li>
+                        <li><a href="cretaceo.html" class="text-light text-decoration-none">Cretáceo (145–66 Ma)</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- RECURSOS -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="fw-bold mb-3">Recursos</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="enciclopedia.html" class="text-light text-decoration-none">Enciclopédia</a></li>
+                        <li><a href="dino-mes.html" class="text-light text-decoration-none">Votação do Mês</a></li>
+                        <li><a href="formulario.html" class="text-light text-decoration-none">Contato</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Submissões</a></li>
+                    </ul>
+                </div>
+
+                <!-- INFORMAÇÕES EXTRA -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="fw-bold mb-3">Informações</h5>
+                    <ul class="list-unstyled small">
+                        <li><i class="bi bi-journal-text"></i> Baseado em pesquisas científicas</li>
+                        <li><i class="bi bi-mortarboard"></i> Conteúdo educativo</li>
+                        <li><i class="bi bi-people"></i> Comunidade de paleontologia</li>
+                        <li><i class="bi bi-globe"></i> Acesso mundial</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr class="border-light" />
+
+            <p class="text-center small">
+                <i class="bi bi-heart-fill text-danger"></i> Educação • Ciência • Descoberta
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODAL PARA DETALHES DOS DINOSSAUROS -->
+    <div class="modal fade" id="dinoModal" tabindex="-1" aria-labelledby="dinoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-success">
+                    <h2 class="modal-title text-success" id="dinoModalLabel">Nome do Dinossauro</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalContent">
+                        <!-- Conteúdo será preenchido via JavaScript -->
+                    </div>
+                </div>
+                <div class="modal-footer border-success">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Dados completos dos dinossauros
+        const dinossauros = [
+            {
+                id: "eoraptor",
+                nome: "Eoraptor",
+                nomeCientifico: "Eoraptor lunensis",
+                significado: "Ladrão da Alvorada",
+                periodo: "Triássico",
+                localizacao: "Formação Ischigualasto, Argentina",
+                tamanho: "1 metro de comprimento",
+                peso: "5-10 kg",
+                alimentacao: "onivoro",
+                descoberta: "1991 por Paul Sereno",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Eoraptor_lunensis.jpg",
+                descricao: "O Eoraptor é considerado um dos dinossauros mais primitivos já descobertos, representando uma forma basal da linhagem que daria origem a todos os dinossauros posteriores. Viveu no que hoje é a Argentina durante o Triássico Superior, há aproximadamente 231 milhões de anos. Era um animal pequeno e ágil, com características mistas que o colocam próximo da raiz da árvore evolutiva dos dinossauros.",
+                descricaoLonga: `
+          <p>O <strong>Eoraptor lunensis</strong> é um dos dinossauros mais importantes para entender as origens desse grupo fascinante. Descoberto no famoso Vale da Lua (Ischigualasto) na Argentina, este pequeno dinossauro representa um estágio muito inicial na evolução dos dinossauros.</p>
+          
+          <p>Com apenas <strong>1 metro de comprimento</strong> e pesando entre 5-10 kg, o Eoraptor era um animal ágil que provavelmente caçava pequenos animais e também se alimentava de plantas, caracterizando-se como onívoro. Seu nome, que significa "Ladrão da Alvorada", reflete sua posição como um dos primeiros dinossauros conhecidos.</p>
+          
+          <p>Anatomicamente, o Eoraptor apresenta uma mistura de características primitivas e avançadas. Tinha <strong>dentes heterodontes</strong> (diferentes formatos para diferentes funções), com dentes afiados na frente da mandíbula para capturar presas e dentes mais foliáceos atrás, possivelmente para processar material vegetal. Seus membros posteriores eram longos e adaptados para corrida, enquanto os anteriores tinham cinco dedos, sendo que três eram funcionais e equipados com garras.</p>
+          
+          <p>O Eoraptor viveu em um ambiente de planícies aluviais com florestas de samambaias e coníferas, compartilhando seu habitat com outros primeiros dinossauros como o Herrerasaurus e uma variedade de répteis mamalianos e rincossauros.</p>
+        `,
+                curiosidades: [
+                    "Foi descoberto em 1991 pela equipe do paleontólogo Paul Sereno no noroeste da Argentina",
+                    "Seu nome específico 'lunensis' refere-se ao Vale da Lua (Ischigualasto) onde foi encontrado",
+                    "É considerado um dos dinossauros mais basais, próximo ao ancestral comum de todos os dinossauros",
+                    "Tinha uma mistura incomum de características de terópodes e saurópodes, indicando sua posição primitiva",
+                    "A descoberta do Eoraptor ajudou a confirmar que os primeiros dinossauros eram pequenos e bípedes"
+                ]
+            },
+            {
+                id: "herrerasaurus",
+                nome: "Herrerasaurus",
+                nomeCientifico: "Herrerasaurus ischigualastensis",
+                significado: "Lagarto de Herrera",
+                periodo: "Triássico",
+                localizacao: "Formação Ischigualasto, Argentina",
+                tamanho: "3-4 metros de comprimento",
+                peso: "200-350 kg",
+                alimentacao: "carnivoro",
+                descoberta: "1963 por Osvaldo Reig",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/8/87/Herrerasaurus_BW.jpg",
+                descricao: "O Herrerasaurus foi um dos primeiros grandes predadores do Triássico e um dos dinossauros mais antigos conhecidos. Era um terópode primitivo que caçava outros répteis e dinossauros menores em seu ecossistema.",
+                descricaoLonga: `
+          <p>O <strong>Herrerasaurus ischigualastensis</strong> foi um dos maiores predadores do Triássico Superior na América do Sul. Com 3-4 metros de comprimento e pesando até 350 kg, este dinossauro era um caçador formidável em seu ecossistema.</p>
+          
+          <p>Seu nome homenageia Victorino Herrera, um pastor que descobriu os primeiros fósseis na província de San Juan, Argentina. O Herrerasaurus apresenta uma anatomia única que combina características primitivas com adaptações avançadas para a predação.</p>
+          
+          <p>Uma característica notável do Herrerasaurus era sua <strong>mandíbula articulada</strong>, que permitia movimentos para frente e para trás, ajudando a segurar presas escorregadias. Seus dentes eram serrilhados e curvados para trás, ideais para segurar e cortar carne.</p>
+          
+          <p>Este dinossauro tinha <strong>braços relativamente curtos</strong> com três dedos funcionais equipados com garras afiadas. Seus membros posteriores eram longos e musculosos, indicando que era um corredor ágil. A cauda rígida atuava como contrapeso durante a locomoção bípede.</p>
+          
+          <p>O Herrerasaurus viveu há aproximadamente 231 milhões de anos e era um dos principais predadores de seu ecossistema, caçando animais como os rincossauros Hyperodapedon e dinossauros menores como o Eoraptor.</p>
+        `,
+                curiosidades: [
+                    "Foi um dos primeiros dinossauros descobertos na América do Sul",
+                    "Sua classificação foi controversa por décadas, sendo considerado um terópode primitivo",
+                    "Tinha uma articulação única na mandíbula que permitia movimentos para frente e para trás",
+                    "Era um dos maiores predadores de seu ecossistema no Triássico Superior",
+                    "Fósseis quase completos permitiram reconstruir sua anatomia com grande precisão"
+                ]
+            },
+            {
+                id: "plateosaurus",
+                nome: "Plateosaurus",
+                nomeCientifico: "Plateosaurus engelhardti",
+                significado: "Lagarto Plano",
+                periodo: "Triássico",
+                localizacao: "Europa Central (Alemanha, França, Suíça)",
+                tamanho: "8-10 metros de comprimento",
+                peso: "4 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1837 por Hermann von Meyer",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Plateosaurus_1DB.jpg",
+                descricao: "O Plateosaurus foi um dos primeiros grandes dinossauros herbívoros e um dos prosaurópodes mais bem estudados. Era um animal de médio a grande porte que podia caminhar tanto sobre duas quanto sobre quatro patas.",
+                descricaoLonga: `
+          <p>O <strong>Plateosaurus engelhardti</strong> foi um dos primeiros dinossauros de grande porte a evoluir, representando um importante passo na direção dos gigantescos saurópodes do Jurássico. Com 8-10 metros de comprimento e pesando até 4 toneladas, era um herbívoro eficiente do Triássico Superior.</p>
+          
+          <p>Seu nome, que significa 'Lagarto Plano', refere-se às vértebras relativamente planas que caracterizam este dinossauro. O Plateosaurus era um <strong>prossaurópode</strong>, um grupo de dinossauros herbívoros que foram os ancestrais dos saurópodes gigantes.</p>
+          
+          <p>Uma característica distintiva do Plateosaurus era sua <strong>versatilidade locomotora</strong>. Podia caminhar sobre quatro patas para se alimentar de vegetação rasteira, mas também era capaz de erguer-se sobre as patas traseiras para alcançar folhagem mais alta ou para correr mais rapidamente quando necessário.</p>
+          
+          <p>Seus dentes em forma de folha eram adaptados para cortar vegetação dura, e possuía uma garra no polegar que poderia ter sido usada para defesa ou para agarrar galhos. A descoberta de centenas de esqueletos em aglomerados sugere que o Plateosaurus pode ter vivido em manadas.</p>
+          
+          <p>O Plateosaurus viveu há aproximadamente 214-204 milhões de anos na Europa Central, em um ambiente de planícies aluviais com rios sazonais e florestas de coníferas.</p>
+        `,
+                curiosidades: [
+                    "Foi um dos primeiros dinossauros a ser descrito cientificamente, em 1837",
+                    "Centenas de esqueletos foram encontrados, alguns em aglomerados, sugerindo comportamento social",
+                    "Podia alcançar até 4 metros de altura quando ereto sobre as patas traseiras",
+                    "Tinha dentes em forma de folha adaptados para cortar vegetação dura",
+                    "Sua descoberta foi importante para estabelecer que dinossauros podiam ser herbívoros"
+                ]
+            },
+            {
+                id: "coelophysis",
+                nome: "Coelophysis",
+                nomeCientifico: "Coelophysis bauri",
+                significado: "Forma Oca",
+                periodo: "Triássico",
+                localizacao: "Formação Chinle, EUA",
+                tamanho: "3 metros de comprimento",
+                peso: "15-30 kg",
+                alimentacao: "carnivoro",
+                descoberta: "1889 por Edward Drinker Cope",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/5/56/Coelophysis_BW.jpg",
+                descricao: "O Coelophysis foi um dos primeiros terópodes, conhecido por seus fósseis excepcionalmente preservados que revelam detalhes sobre sua anatomia e possivelmente seu comportamento canibal.",
+                descricaoLonga: `
+          <p>O <strong>Coelophysis bauri</strong> é um dos dinossauros triássicos mais bem conhecidos, graças à descoberta de centenas de esqueletos excepcionalmente preservados no Sítio de Ghost Ranch, Novo México. Este pequeno terópode era um predador ágil e gracioso que viveu há aproximadamente 203 milhões de anos.</p>
+          
+          <p>Com cerca de 3 metros de comprimento e pesando apenas 15-30 kg, o Coelophysis era construído para velocidade. Seu nome, que significa 'Forma Oca', refere-se às vértebras ocas que tornavam seu esqueleto leve sem sacrificar a resistência.</p>
+          
+          <p>O Coelophysis tinha um <strong>corpo esguio e alongado</strong>, com um pescoço longo e flexível e uma cauda rígida que atuava como leme durante a corrida. Seus membros anteriores eram relativamente curtos mas funcionais, com três dedos equipados com garras.</p>
+          
+          <p>Uma descoberta controversa foram os restos de indivíduos juvenis dentro da cavidade corporal de adultos, interpretados inicialmente como evidência de canibalismo. Estudos posteriores sugerem que podem ser embriões ou conteúdo estomacal de outras presas.</p>
+          
+          <p>O Coelophysis viveu em um ambiente semiárido com rios sazonais e florestas de coníferas, caçando pequenos vertebrados como lagartos, peixes e talvez até outros dinossauros menores.</p>
+        `,
+                curiosidades: [
+                    "Centenas de esqueletos foram encontrados juntos no Sítio de Ghost Ranch, Novo México",
+                    "Fósseis mostram possíveis evidências de canibalismo, embora isso seja debatido",
+                    "Foi o primeiro dinossauro a ser levado ao espaço (a bordo do ônibus espacial Endeavour em 1998)",
+                    "Tinha ossos ocos que reduziam seu peso sem perder resistência",
+                    "É o dinossauro de estado do Novo México, nos Estados Unidos"
+                ]
+            },
+            {
+                id: "staurikosaurus",
+                nome: "Staurikosaurus",
+                nomeCientifico: "Staurikosaurus pricei",
+                significado: "Lagarto do Cruzeiro do Sul",
+                periodo: "Triássico",
+                localizacao: "Formação Santa Maria, Brasil",
+                tamanho: "2 metros de comprimento",
+                peso: "30-40 kg",
+                alimentacao: "carnivoro",
+                descoberta: "1970 por Llewellyn Ivor Price",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Staurikosaurus.jpg",
+                descricao: "O Staurikosaurus foi um dos primeiros dinossauros carnívoros do Brasil e um dos mais antigos terópodes conhecidos. Seu nome homenageia a constelação do Cruzeiro do Sul.",
+                descricaoLonga: `
+          <p>O <strong>Staurikosaurus pricei</strong> é um dos dinossauros brasileiros mais importantes, representando um dos primeiros terópodes conhecidos. Descoberto na Formação Santa Maria no Rio Grande do Sul, este pequeno predador viveu há aproximadamente 233 milhões de anos durante o Triássico Médio.</p>
+          
+          <p>Com cerca de 2 metros de comprimento e pesando 30-40 kg, o Staurikosaurus era um dinossauro relativamente pequeno mas ágil. Seu nome, que significa 'Lagarto do Cruzeiro do Sul', homenageia a famosa constelação visível no hemisfério sul.</p>
+          
+          <p>Anatomicamente, o Staurikosaurus apresenta uma mistura de características primitivas e avançadas. Tinha <strong>vértebras simples e maciças</strong> (ao contrário dos terópodes posteriores com vértebras complexas) mas já apresentava adaptações para a predação bípede.</p>
+          
+          <p>Seus membros posteriores eram longos e adaptados para corrida, enquanto os anteriores eram mais curtos, com cinco dedos (três funcionais). A mandíbula era equipada com dentes serrilhados e curvados, ideais para segurar presas.</p>
+          
+          <p>O Staurikosaurus viveu em um ambiente de planícies aluviais com rios e lagos, compartilhando seu habitat com outros primeiros dinossauros como o Saturnalia e uma variedade de répteis mamalianos e rincossauros.</p>
+        `,
+                curiosidades: [
+                    "Foi um dos primeiros dinossauros descritos no Brasil, em 1970",
+                    "Seu nome homenageia a constelação do Cruzeiro do Sul, símbolo do Brasil",
+                    "É um dos dinossauros carnívoros mais antigos conhecidos",
+                    "O epíteto específico 'pricei' homenageia o paleontólogo brasileiro Llewellyn Ivor Price",
+                    "Representa um estágio muito inicial na evolução dos dinossauros terópodes"
+                ]
+            },
+            {
+                id: "riojasaurus",
+                nome: "Riojasaurus",
+                nomeCientifico: "Riojasaurus incertus",
+                significado: "Lagarto de La Rioja",
+                periodo: "Triássico",
+                localizacao: "Formação Los Colorados, Argentina",
+                tamanho: "10-11 metros de comprimento",
+                peso: "2-3 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1969 por José Fernando Bonaparte",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Riojasaurus_NT.jpg/1280px-Riojasaurus_NT.jpg",
+                descricao: "O Riojasaurus foi um dos primeiros sauropodomorfos de grande porte, um herbívoro quadrúpede que viveu no que hoje é a Argentina durante o Triássico Superior.",
+                descricaoLonga: `
+          <p>O <strong>Riojasaurus incertus</strong> foi um dos maiores dinossauros do Triássico Superior na América do Sul. Com 10-11 metros de comprimento e pesando 2-3 toneladas, este sauropodomorfo representava um passo importante em direção aos gigantescos saurópodes do Jurássico.</p>
+          
+          <p>Seu nome, que significa 'Lagarto de La Rioja', refere-se à província argentina onde foi descoberto. O Riojasaurus era um animal <strong>exclusivamente quadrúpede</strong>, ao contrário de muitos outros prossaurópodes que podiam adotar postura bípede ocasionalmente.</p>
+          
+          <p>Anatomicamente, o Riojasaurus tinha <strong>membros robustos e coluna vertebral forte</strong>, adaptados para suportar seu peso considerável. Seu pescoço era relativamente longo, permitindo alcançar vegetação a diferentes alturas, e sua cauda era longa e pesada.</p>
+          
+          <p>Seus dentes eram pequenos e em forma de folha, adaptados para processar material vegetal. As patas dianteiras eram apenas ligeiramente mais curtas que as traseiras, indicando uma postura mais horizontal do que a observada em saurópodes posteriores.</p>
+          
+          <p>O Riojasaurus viveu há aproximadamente 227-213 milhões de anos em um ambiente de planícies aluviais com rios sazonais, alimentando-se de samambaias, cavalinhas e outras plantas baixas.</p>
+        `,
+                curiosidades: [
+                    "Foi um dos maiores dinossauros do Triássico Superior",
+                    "Era exclusivamente quadrúpede, ao contrário de muitos prossaurópodes",
+                    "Seus membros eram robustos e coluna vertebral forte para suportar seu peso",
+                    "Viveu na mesma formação que o predador Zupaysaurus",
+                    "Representa uma linhagem sul-americana de sauropodomorfos de grande porte"
+                ]
+            },
+            {
+                id: "brachiosaurus",
+                nome: "Brachiosaurus",
+                nomeCientifico: "Brachiosaurus altithorax",
+                significado: "Lagarto Braço",
+                periodo: "Jurássico",
+                localizacao: "Formação Morrison, EUA",
+                tamanho: "25-26 metros de comprimento",
+                peso: "28-58 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1900 por Elmer S. Riggs",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Brachiosaurus_BW.jpg/1280px-Brachiosaurus_BW.jpg",
+                descricao: "O Brachiosaurus foi um dos saurópodes mais icônicos, conhecido por seu pescoço extremamente longo e postura única com membros anteriores mais longos que os posteriores.",
+                descricaoLonga: `
+          <p>O <strong>Brachiosaurus altithorax</strong> é um dos saurópodes mais emblemáticos do Jurássico Superior. Com 25-26 metros de comprimento e pesando entre 28-58 toneladas, este gigante era um dos maiores animais que já caminharam sobre a Terra.</p>
+          
+          <p>Sua característica mais distintiva era a <strong>postura única</strong> com membros anteriores mais longos que os posteriores, dando-lhe uma aparência inclinada para frente, como uma girafa gigante. Seu nome, que significa 'Lagarto Braço', refere-se justamente a esses membros anteriores extraordinariamente longos.</p>
+          
+          <p>O Brachiosaurus tinha um <strong>pescoço extremamente longo</strong> (cerca de 9 metros) que lhe permitia alcançar vegetação no topo das árvores, a até 13 metros de altura. Suas narinas estavam localizadas no topo de uma crista óssea no crânio, o que levou a especulações (agora refutadas) de que poderia ter um estilo de vida semi-aquático.</p>
+          
+          <p>Seus dentes eram em forma de espátula, adaptados para arrancar folhas e galhos. Estudos de seu esqueleto sugerem que poderia levantar a cabeça quase verticalmente para alcançar a vegetação mais alta disponível.</p>
+          
+          <p>O Brachiosaurus viveu há aproximadamente 154-153 milhões de anos na Formação Morrison, um ambiente de planícies aluviais com florestas de coníferas, ginkgos e samambaias arborescentes.</p>
+        `,
+                curiosidades: [
+                    "Tinha membros anteriores mais longos que os posteriores, uma característica única entre saurópodes",
+                    "Podia alcançar vegetação a até 13 metros de altura",
+                    "Um esqueleto montado no Museu de História Natural de Berlin é um dos mais altos montados no mundo",
+                    "Sua descoberta em 1900 revolucionou a compreensão do tamanho máximo dos dinossauros",
+                    "Aparece proeminentemente no filme Jurassic Park, embora baseado no Giraffatitan africano"
+                ]
+            },
+            {
+                id: "allosaurus",
+                nome: "Allosaurus",
+                nomeCientifico: "Allosaurus fragilis",
+                significado: "Lagarto Diferente",
+                periodo: "Jurássico",
+                localizacao: "Formação Morrison, EUA",
+                tamanho: "8-12 metros de comprimento",
+                peso: "1-2 toneladas",
+                alimentacao: "carnivoro",
+                descoberta: "1877 por Othniel Charles Marsh",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Allosaurus_BW.jpg/1280px-Allosaurus_BW.jpg",
+                descricao: "O Allosaurus foi o predador de topo do Jurássico Superior na América do Norte. Ágil e poderoso, caçava grandes saurópodes e estegossauros em seu ecossistema.",
+                descricaoLonga: `
+          <p>O <strong>Allosaurus fragilis</strong> foi o principal predador do Jurássico Superior na América do Norte e um dos terópodes mais bem estudados. Com 8-12 metros de comprimento e pesando 1-2 toneladas, este carnívoro era um caçador formidável e versátil.</p>
+          
+          <p>Seu nome, que significa 'Lagarto Diferente', refere-se às vértebras únicas que possuía. O Allosaurus tinha um <strong>crânio grande equipado com dezenas de dentes serrilhados</strong> que eram constantemente substituídos ao longo de sua vida.</p>
+          
+          <p>Uma característica notável do Allosaurus eram seus <strong>braços poderosos</strong> com três dedos equipados com garras afiadas. Estes membros eram mais longos e funcionais que os de muitos outros terópodes grandes, possivelmente usados para agarrar presas.</p>
+          
+          <p>Evidências fósseis sugerem que o Allosaurus pode ter caçado em grupos para abater presas muito maiores, como saurópodes adultos. Marcas de dentes em ossos de presas e feridas curadas em esqueletos de Allosaurus indicam um estilo de vida ativo e perigoso.</p>
+          
+          <p>O Allosaurus viveu há aproximadamente 155-145 milhões de anos na Formação Morrison, um ecossistema diversificado que incluía pelo menos três espécies de Allosaurus coexistindo com outros predadores como o Ceratosaurus e o Torvosaurus.</p>
+        `,
+                curiosidades: [
+                    "É um dos dinossauros carnívoros mais bem representados no registro fóssil",
+                    "O sítio de Cleveland-Lloyd em Utah preservou mais de 10.000 ossos de Allosaurus",
+                    "Tinha uma articulação única no maxilar que permitia abrir a boca extraordinariamente wide",
+                    "Marcas de dentes em ossos de presas sugerem que atacava saurópodes vivos",
+                    "Fósseis mostram evidências de feridas curadas, indicando ataques a presas perigosas"
+                ]
+            },
+            {
+                id: "stegosaurus",
+                nome: "Stegosaurus",
+                nomeCientifico: "Stegosaurus stenops",
+                significado: "Lagarto Telhado",
+                periodo: "Jurássico",
+                localizacao: "Formação Morrison, EUA",
+                tamanho: "7-9 metros de comprimento",
+                peso: "4-5 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1877 por Othniel Charles Marsh",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Stegosaurus_BW.jpg/1280px-Stegosaurus_BW.jpg",
+                descricao: "O Stegosaurus é um dos dinossauros mais reconhecíveis, famoso por suas placas dorsais e espigões na cauda. Este herbívoro do Jurássico Superior é um ícone da paleontologia.",
+                descricaoLonga: `
+          <p>O <strong>Stegosaurus stenops</strong> é um dos dinossauros mais icônicos, imediatamente reconhecível pelas impressionantes placas dorsais e espigões caudais. Com 7-9 metros de comprimento e pesando 4-5 toneladas, este herbívoro era um dos habitantes mais distintivos do Jurássico Superior.</p>
+          
+          <p>As <strong>placas dorsais do Stegosaurus</strong> são sua característica mais famosa. Dispostas em duas fileiras alternadas ao longo das costas, estas estruturas ósseas podiam atingir até 60 cm de altura. A função exata das placas ainda é debatida - podem ter servido para regulação térmica, exibição ou defesa.</p>
+          
+          <p>Mais formidáveis eram os <strong>espigões na cauda</strong> (conhecidos como thagomizer), que podiam atingir até 1 metro de comprimento. Estes espigões eram armas defensivas eficazes, como evidenciado por vértebras de Allosaurus com perfurações que correspondem ao espaçamento dos espigões do Stegosaurus.</p>
+          
+          <p>O Stegosaurus tinha um <strong>cérebro extremamente pequeno</strong> em relação ao tamanho do corpo (cerca de 80 gramas), levando à crença inicial de que possuía um 'segundo cérebro' na região pélvica (na verdade, uma dilatação do canal neural).</p>
+          
+          <p>Este dinossauro viveu há aproximadamente 155-150 milhões de anos na Formação Morrison, alimentando-se de vegetação baixa como samambaias e cavalinhas, que processava com seu bico córneo e dentes pequenos.</p>
+        `,
+                curiosidades: [
+                    "Tinha um cérebro do tamanho de uma noz, um dos menores em relação ao corpo entre os dinossauros",
+                    "As placas dorsais podem ter sido cobertas por pele colorida para exibição",
+                    "O termo 'thagomizer' para os espigões da cauda foi cunhado em uma história em quadrinhos",
+                    "Fósseis mostram evidências diretas de combate com o Allosaurus",
+                    "Sua postura com a traseira mais alta que os ombros é única entre os dinossauros"
+                ]
+            },
+            {
+                id: "diplodocus",
+                nome: "Diplodocus",
+                nomeCientifico: "Diplodocus carnegii",
+                significado: "Viga Dupla",
+                periodo: "Jurássico",
+                localizacao: "Formação Morrison, EUA",
+                tamanho: "25-33 metros de comprimento",
+                peso: "10-16 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1878 por Samuel Wendell Williston",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Diplodocus_BW.jpg/1280px-Diplodocus_BW.jpg",
+                descricao: "O Diplodocus foi um dos saurópodes mais longos, conhecido por seu pescoço e cauda extremamente longos. Usava a cauda como chicote para defesa e possivelmente comunicação.",
+                descricaoLonga: `
+          <p>O <strong>Diplodocus carnegii</strong> foi um dos dinossauros mais longos que já existiram, com indivíduos adultos atingindo 25-33 metros de comprimento. Apesar de seu tamanho impressionante, era relativamente leve para um saurópode, pesando 10-16 toneladas.</p>
+          
+          <p>Seu nome, que significa 'Viga Dupla', refere-se às <strong>vértebras caudais em forma de dupla viga</strong> que caracterizam este dinossauro. O Diplodocus tinha um pescoço extremamente longo (até 8 metros) composto por 15 vértebras alongadas.</p>
+          
+          <p>A <strong>cauda do Diplodocus</strong> era ainda mais impressionante - com até 14 metros de comprimento e contendo cerca de 80 vértebras. Estudos sugerem que podia mover a cauda em velocidades supersônicas, criando um estalo sonoro que poderia ter sido usado para defesa ou comunicação.</p>
+          
+          <p>O Diplodocus tinha dentes em forma de lápis localizados apenas na frente da mandíbula, adaptados para arrancar folhas e galhos. Seu cérebro era relativamente pequeno, e evidências de marcas de dentes em ossos de Diplodocus sugerem que era predado por Allosaurus.</p>
+          
+          <p>Este saurópode viveu há aproximadamente 154-152 milhões de anos na Formação Morrison, um ambiente diversificado que abrigava pelo menos quatro espécies de Diplodocus coexistindo com outros saurópodes como o Apatosaurus e o Brachiosaurus.</p>
+        `,
+                curiosidades: [
+                    "Era um dos dinossauros mais longos, mas relativamente leve para seu tamanho",
+                    "Sua cauda podia ter até 80 vértebras e atingir velocidades supersônicas",
+                    "Andrew Carnegie presenteou réplicas de Diplodocus a museus em todo o mundo",
+                    "Tinha dentes apenas na frente da mandíbula, especializados em arrancar folhas",
+                    "Estudos de biomecânica sugerem que não conseguia levantar o pescoço muito alto"
+                ]
+            },
+            {
+                id: "ceratosaurus",
+                nome: "Ceratosaurus",
+                nomeCientifico: "Ceratosaurus nasicornis",
+                significado: "Lagarto com Chifre",
+                periodo: "Jurássico",
+                localizacao: "Formação Morrison, EUA e Formação Tendaguru, Tanzânia",
+                tamanho: "5-7 metros de comprimento",
+                peso: "500-1000 kg",
+                alimentacao: "carnivoro",
+                descoberta: "1884 por Othniel Charles Marsh",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Ceratosaurus_BW.jpg/1280px-Ceratosaurus_BW.jpg",
+                descricao: "O Ceratosaurus foi um terópode de médio porte com um chifre nasal distintivo. Mais ágil que o Allosaurus, possivelmente caçava presas menores ou adotava estratégias de caça diferentes.",
+                descricaoLonga: `
+          <p>O <strong>Ceratosaurus nasicornis</strong> foi um terópode distintivo do Jurássico Superior, conhecido principalmente pelo <strong>chifre nasal proeminente</strong> que lhe deu o nome. Com 5-7 metros de comprimento e pesando 500-1000 kg, era menor que o contemporâneo Allosaurus mas possivelmente mais ágil.</p>
+          
+          <p>O chifre nasal do Ceratosaurus era uma estrutura óssea que provavelmente servia para <strong>exibição intraespecífica</strong> rather than combat, talvez usado em rituais de acasalamento ou para reconhecimento de espécie. Além do chifre nasal, possuía cristas ósseas acima dos olhos.</p>
+          
+          <p>Uma característica única do Ceratosaurus eram os <strong>pequenos osteodermos</strong> (placas ósseas) ao longo de seu dorso, uma característica rara em terópodes. Seus dentes eram excepcionalmente longos e em forma de lâmina, adaptados para perfurar e segurar presas.</p>
+          
+          <p>Diferentemente do Allosaurus, o Ceratosaurus tinha <strong>quatro dedos funcionais</strong> nas mãos (embora o quarto dedo fosse muito reduzido). Seu corpo era mais esguio e suas pernas proporcionalmente mais longas, sugerindo que era um corredor mais ágil.</p>
+          
+          <p>O Ceratosaurus viveu há aproximadamente 153-148 milhões de anos, coexistindo com o Allosaurus na Formação Morrison. Possivelmente ocupava um nicho ecológico diferente, caçando presas menores ou adotando estratégias de caça distintas.</p>
+        `,
+                curiosidades: [
+                    "Seu chifre nasal é uma característica única entre os grandes terópodes do Jurássico",
+                    "Tinha pequenas placas ósseas (osteodermos) ao longo do dorso, raras em terópodes",
+                    "Seus dentes eram excepcionalmente longos e em forma de lâmina",
+                    "Foi um dos primeiros dinossauros descobertos com esqueleto quase completo",
+                    "Coexistiu com o Allosaurus, possivelmente ocupando nichos ecológicos diferentes"
+                ]
+            },
+            {
+                id: "apatosaurus",
+                nome: "Apatosaurus",
+                nomeCientifico: "Apatosaurus ajax",
+                significado: "Lagarto Enganador",
+                periodo: "Jurássico",
+                localizacao: "Formação Morrison, EUA",
+                tamanho: "21-23 metros de comprimento",
+                peso: "16-22 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1877 por Othniel Charles Marsh",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Apatosaurus_BW.jpg/1280px-Apatosaurus_BW.jpg",
+                descricao: "O Apatosaurus, conhecido anteriormente como Brontossauro, era um saurópode maciço com pescoço e cauda longos, porém mais robusto que o Diplodocus.",
+                descricaoLonga: `
+          <p>O <strong>Apatosaurus ajax</strong> é um dos saurópodes mais famosos do Jurássico Superior, conhecido por seu corpo maciço e cauda extremamente longa. Com 21-23 metros de comprimento e pesando 16-22 toneladas, era mais robusto que seu parente Diplodocus.</p>
+          
+          <p>Este dinossauro tem uma história taxonômica complicada. Othniel Charles Marsh descreveu primeiro o Apatosaurus em 1877 e o Brontosaurus em 1879, sem perceber que eram o mesmo animal. O nome Apatosaurus ('Lagarto Enganador') tem prioridade, mas Brontosaurus ('Lagarto Trovão') permanece no imaginário popular.</p>
+          
+          <p>O Apatosaurus tinha <strong>vértebras incrivelmente robustas</strong> e membros fortes para suportar seu peso considerável. Suas costelas eram profundas e seu peito era amplo, dando-lhe um perfil mais volumoso que outros diplodocídeos.</p>
+          
+          <p>Estudos recentes sugerem que o Apatosaurus podia criar <strong>estalos sonoros com sua cauda</strong> como o Diplodocus, mas também podia usá-la como uma arma contundente. Seu pescoço era forte mas menos flexível que o de outros saurópodes.</p>
+          
+          <p>Viveu há aproximadamente 152-151 milhões de anos na Formação Morrison, alimentando-se de vegetação a diferentes alturas. Marcas de dentes de Allosaurus em ossos de Apatosaurus fornecem evidências diretas de predação sobre estes gigantes.</p>
+        `,
+                curiosidades: [
+                    "Foi confundido com o Brontosaurus por décadas - são o mesmo animal",
+                    "Tinha vértebras incrivelmente robustas para suportar seu peso",
+                    "Seu nome 'Apatosaurus' significa 'Lagarto Enganador', referindo-se à confusão inicial",
+                    "Um esqueleto completo no Carnegie Museum foi o primeiro saurópode montado integralmente",
+                    "Estudos de 2015 revalidaram Brontosaurus como gênero separado, embora controverso"
+                ]
+            },
+            {
+                id: "tyrannosaurus",
+                nome: "Tyrannosaurus rex",
+                nomeCientifico: "Tyrannosaurus rex",
+                significado: "Réi Lagarto Tirano",
+                periodo: "Cretáceo",
+                localizacao: "Formação Hell Creek, EUA e Canadá",
+                tamanho: "12-13 metros de comprimento",
+                peso: "8-14 toneladas",
+                alimentacao: "carnivoro",
+                descoberta: "1902 por Barnum Brown",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tyrannosaurus_rex_BW.jpg/1280px-Tyrannosaurus_rex_BW.jpg",
+                descricao: "O Tyrannosaurus rex é provavelmente o dinossauro mais famoso de todos. Era um predador de topo no final do Cretáceo, com uma mordida extremamente poderosa e sentidos aguçados.",
+                descricaoLonga: `
+          <p>O <strong>Tyrannosaurus rex</strong> é indiscutivelmente o dinossauro mais icônico que já existiu. Como um dos maiores predadores terrestres de todos os tempos, este terópode do Cretáceo Superior continua a fascinar cientistas e o público alike.</p>
+          
+          <p>Com 12-13 metros de comprimento e pesando 8-14 toneladas, o T. rex era um predador formidável. Sua característica mais impressionante era sua <strong>mordida extremamente poderosa</strong>, com força estimada de 35.000-57.000 newtons - a mais forte de qualquer animal terrestre conhecido.</p>
+          
+          <p>O T. rex tinha <strong>sentidos excepcionais</strong>. Seus grandes olhos frontais proporcionavam visão binocular aguçada, e estudos do ouvido interno sugerem excelente audição e equilíbrio. Seu olfato também era altamente desenvolvido, com bulbos olfativos grandes.</p>
+          
+          <p>Embora seus <strong>braços curtos</strong> sejam frequentemente ridicularizados, eram incrivelmente fortes e podem ter sido usados para segurar presas durante a alimentação ou para auxiliar na elevação do corpo. Cada braço tinha dois dedos funcionais com garras afiadas.</p>
+          
+          <p>O T. rex viveu há aproximadamente 68-66 milhões de anos no final do Cretáceo, sendo um dos últimos dinossauros não-avianos antes da extinção em massa. Caçava grandes herbívoros como o Triceratops e o Edmontosaurus.</p>
+        `,
+                curiosidades: [
+                    "Tinha a mordida mais poderosa de qualquer animal terrestre conhecido",
+                    "Seus braços curtos eram extremamente musculosos, capazes de levantar 200 kg cada",
+                    "O espécime 'Sue' no Field Museum é o T. rex mais completo e maior já encontrado",
+                    "Estudos de seu ouvido interno sugerem que podia ouvir sons de baixa frequência",
+                    "Evidências fósseis mostram que se engajava em combates violentos com outros T. rex"
+                ]
+            },
+            {
+                id: "triceratops",
+                nome: "Triceratops",
+                nomeCientifico: "Triceratops horridus",
+                significado: "Rosto com Três Chifres",
+                periodo: "Cretáceo",
+                localizacao: "Formação Hell Creek, EUA e Canadá",
+                tamanho: "8-9 metros de comprimento",
+                peso: "6-12 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1887 por Othniel Charles Marsh",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Triceratops_BW.jpg/1280px-Triceratops_BW.jpg",
+                descricao: "O Triceratops foi um dos dinossauros mais reconhecíveis, com seu impressionante escudo cranial e três chifres. Era um dos últimos dinossauros a existir antes da extinção em massa.",
+                descricaoLonga: `
+          <p>O <strong>Triceratops horridus</strong> é um dos dinossauros ceratopsídeos mais icônicos, imediatamente reconhecível pelo seu <strong>enorme escudo cranial e três chifres</strong>. Com 8-9 metros de comprimento e pesando 6-12 toneladas, era um dos maiores herbívoros do final do Cretáceo.</p>
+          
+          <p>Os <strong>três chifres do Triceratops</strong> - um curto no nariz e dois longos acima dos olhos - eram estruturas ósseas cobertas por bainhas de queratina que podiam atingir mais de 1 metro de comprimento. Estes chifres eram usados principalmente para defesa contra predadores como o T. rex e para combates intraespecíficos.</p>
+          
+          <p>O <strong>escudo cranial (gorjala)</strong> era uma extensão dos ossos parietais e escamosos que podia atingir 2 metros de largura. Inicialmente pensado como proteção para o pescoço, agora acredita-se que servia principalmente para ancorar poderosos músculos da mandíbula e para exibição.</p>
+          
+          <p>O Triceratops tinha um <strong>bico córneo afiado</strong> como o de uma papagaio e baterias de dentes que eram continuamente substituídos. Podia processar vegetação dura como cycas e palmeiras, que dominavam o final do Cretáceo.</p>
+          
+          <p>Este dinossauro viveu há aproximadamente 68-66 milhões de anos, sendo um dos últimos dinossauros antes da extinção K-Pg. Fósseis mostram evidências de combate com T. rex, com marcas de dentes em escudos craniais e chifres quebrados e curados.</p>
+        `,
+                curiosidades: [
+                    "É um dos dinossauros mais comuns na Formação Hell Creek",
+                    "Seu escudo cranial mudava drasticamente de formato com a idade",
+                    "Marcas de dentes de T. rex em fósseis de Triceratops provam que eram predados",
+                    "Os chifres podem ter sido usados em rituais de combate entre machos",
+                    "Tinha um dos crânios maiores de qualquer animal terrestre, com até 2,5 metros"
+                ]
+            },
+            {
+                id: "velociraptor",
+                nome: "Velociraptor",
+                nomeCientifico: "Velociraptor mongoliensis",
+                significado: "Ladrão Veloz",
+                periodo: "Cretáceo",
+                localizacao: "Formação Djadochta, Mongólia",
+                tamanho: "1.8-2 metros de comprimento",
+                peso: "15-20 kg",
+                alimentacao: "carnivoro",
+                descoberta: "1922 por Henry Fairfield Osborn",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Velociraptor_BW.jpg/1280px-Velociraptor_BW.jpg",
+                descricao: "O Velociraptor foi um pequeno predador emplumado da Ásia, conhecido por sua garra em foice no pé e inteligência notável para um dinossauro. Ficou famoso pelos filmes Jurassic Park.",
+                descricaoLonga: `
+          <p>O <strong>Velociraptor mongoliensis</strong> foi um dos dinossauros dromaeossaurídeos mais famosos, conhecido por sua <strong>garra em foice no segundo dedo do pé</strong>. Ao contrário de sua representação nos filmes, era um animal relativamente pequeno, com 1,8-2 metros de comprimento e pesando apenas 15-20 kg.</p>
+          
+          <p>Uma descoberta crucial foi o <strong>fóssil 'Fighting Dinosaurs'</strong>, que preserva um Velociraptor e um Protoceratops travados em combate mortal. Este fóssil fornece evidências diretas do comportamento predatório dos dromaeossaurídeos e mostra como usavam sua garra em foice.</p>
+          
+          <p>O Velociraptor era <strong>coberto de penas</strong>, como evidenciado por marcas de inserção de penas em seus ossos do braço. Tinha penas de contorno nos membros anteriores que podem ter sido usadas para exibição, proteção térmica ou ajudar em manobras durante a corrida.</p>
+          
+          <p>Este dinossauro tinha <strong>sentidos aguçados</strong> - grandes órbitas oculares sugerem visão excelente, e seu cérebro era relativamente grande para seu tamanho corporal, indicando inteligência notável para um dinossauro.</p>
+          
+          <p>O Velociraptor viveu há aproximadamente 75-71 milhões de anos no que é hoje o Deserto de Gobi, Mongólia. Caçava pequenos dinossauros como o Protoceratops e mamíferos, possivelmente em grupos cooperativos.</p>
+        `,
+                curiosidades: [
+                    "Era coberto de penas, não tinha a pele reptiliana mostrada nos filmes",
+                    "O fóssil 'Fighting Dinosaurs' o mostra em combate com um Protoceratops",
+                    "Sua garra em foice do pé media até 6,5 cm e era mantida erguida durante a locomoção",
+                    "Era muito menor que sua representação em Jurassic Park (do tamanho de um peru)",
+                    "Tinha um cérebro relativamente grande, indicando inteligência avançada para um dinossauro"
+                ]
+            },
+            {
+                id: "spinosaurus",
+                nome: "Spinosaurus",
+                nomeCientifico: "Spinosaurus aegyptiacus",
+                significado: "Lagarto Espinho",
+                periodo: "Cretáceo",
+                localizacao: "Norte da África (Egito, Marrocos, Níger)",
+                tamanho: "15-18 metros de comprimento",
+                peso: "7-20 toneladas",
+                alimentacao: "carnivoro",
+                descoberta: "1912 por Ernst Stromer",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Spinosaurus_white_background.png/1280px-Spinosaurus_white_background.png",
+                descricao: "O Spinosaurus foi o maior dinossauro carnívoro conhecido e o primeiro dinossauro semi-aquático identificado. Sua vela dorsal distintiva e adaptações aquáticas o tornam único.",
+                descricaoLonga: `
+          <p>O <strong>Spinosaurus aegyptiacus</strong> foi não apenas o maior dinossauro carnívoro conhecido, mas também o primeiro dinossauro identificado com adaptações para um <strong>estilo de vida semi-aquático</strong>. Com 15-18 metros de comprimento e pesando 7-20 toneladas, superava até o Tyrannosaurus rex em tamanho.</p>
+          
+          <p>A característica mais distintiva do Spinosaurus era sua <strong>impressionante vela dorsal</strong>, formada por extensões das vértebras que podiam atingir até 1,8 metros de altura. Esta estrutura pode ter servido para regulação térmica, exibição ou armazenamento de gordura.</p>
+          
+          <p>Adaptações aquáticas notáveis incluem <strong>narinas retraídas</strong> para respiração enquanto parcialmente submerso, <strong>pés largos e possivelmente palmados</strong> para natação, e <strong>ossos densos</strong> para controle de flutuação semelhantes aos de penguins.</p>
+          
+          <p>Seu <strong>focinho alongado</strong> semelhante ao de um crocodilo era equipado com dentes cônicos e sem serrilhas, ideais para capturar peixes escorregadios. Análises isotópicas de seus dentes confirmam uma dieta predominantemente aquática.</p>
+          
+          <p>O Spinosaurus viveu há aproximadamente 112-93 milhões de anos no Norte da África, habitando ambientes de deltas e manguezais. Era o predador dominante em seu ecossistema, caçando tanto presas aquáticas quanto terrestres.</p>
+        `,
+                curiosidades: [
+                    "É o único dinossauro conhecido adaptado para um estilo de vida semi-aquático",
+                    "Seus ossos foram destruídos durante um bombardeio na Segunda Guerra Mundial",
+                    "Novas descobertas em 2014 revelaram suas adaptações aquáticas revolucionárias",
+                    "Tinha narinas retraídas para respirar enquanto parcialmente submerso",
+                    "Sua vela dorsal pode ter sido coberta por pele colorida para exibição"
+                ]
+            },
+            {
+                id: "ankylosaurus",
+                nome: "Ankylosaurus",
+                nomeCientifico: "Ankylosaurus magniventris",
+                significado: "Lagarto Fundido",
+                periodo: "Cretáceo",
+                localizacao: "Formação Hell Creek, EUA e Canadá",
+                tamanho: "6-8 metros de comprimento",
+                peso: "4-8 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1906 por Barnum Brown",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Ankylosaurus_BW.jpg/1280px-Ankylosaurus_BW.jpg",
+                descricao: "O Ankylosaurus foi um herbívoro blindado com uma clava óssea na cauda capaz de quebrar ossos de predadores. Um verdadeiro tanque vivo do Cretáceo Superior.",
+                descricaoLonga: `
+          <p>O <strong>Ankylosaurus magniventris</strong> foi o maior e mais famoso dos dinossauros anquilossaurídeos - herbívoros fortemente blindados conhecidos como 'tanques viventes' do Cretáceo. Com 6-8 metros de comprimento e pesando 4-8 toneladas, era uma presa formidável para qualquer predador.</p>
+          
+          <p>Sua característica mais distintiva era a <strong>armadura corporal completa</strong> composta por centenas de osteodermos (placas ósseas) fundidas na pele. Estas placas variavam em tamanho e formato, desde pequenos nódulos até grandes espigões, proporcionando proteção contra os dentes dos maiores predadores.</p>
+          
+          <p>A arma mais formidável do Ankylosaurus era sua <strong>clava caudal</strong> - uma estrutura óssea maciça na ponta da cauda que podia atingir 60 cm de diâmetro. Estudos biomecânicos sugerem que podia balançar esta clava com força suficiente para quebrar ossos de predadores como o T. rex.</p>
+          
+          <p>O Ankylosaurus tinha um <strong>corpo largo e achatado</strong> com membros robustos. Seu crânio era triangular e extremamente espesso, com chifres ósseos nas laterais que protegiam os olhos. Apesar de sua aparência pesada, evidências de marcas de dentes em fósseis sugerem que era atacado por predadores.</p>
+          
+          <p>Este dinossauro viveu há aproximadamente 68-66 milhões de anos no final do Cretáceo, sendo um dos últimos dinossauros antes da extinção em massa. Alimentava-se de vegetação rasteira que arrancava com seu bico córneo.</p>
+        `,
+                curiosidades: [
+                    "Sua clava caudal podia quebrar ossos de predadores como o T. rex",
+                    "Tinha até mesmo pálpebras ósseas para proteção adicional dos olhos",
+                    "O nome 'magniventris' significa 'barriga grande', referindo-se à sua largura corporal",
+                    "Era um dos dinossauros mais bem protegidos que já existiram",
+                    "Fósseis mostram marcas de dentes de T. rex em sua armadura, evidenciando ataques"
+                ]
+            },
+            {
+                id: "pteranodon",
+                nome: "Pteranodon",
+                nomeCientifico: "Pteranodon longiceps",
+                significado: "Asa sem Dentes",
+                periodo: "Cretáceo",
+                localizacao: "Formação Niobrara, EUA",
+                tamanho: "Envergadura de 5-7 metros",
+                peso: "20-40 kg",
+                alimentacao: "carnivoro",
+                descoberta: "1876 por Othniel Charles Marsh",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Pteranodon_BW.jpg/1280px-Pteranodon_BW.jpg",
+                descricao: "O Pteranodon foi um dos maiores pterossauros, com envergadura de até 7 metros. Dominava os céus do Cretáceo Superior e se alimentava de peixes.",
+                descricaoLonga: `
+          <p>O <strong>Pteranodon longiceps</strong> foi um dos pterossauros mais icônicos e bem estudados do Cretáceo Superior. Apesar de frequentemente ser confundido com dinossauros, os pterossauros formam um grupo distinto de répteis voadores que coexistiu com os dinossauros.</p>
+          
+          <p>Com uma <strong>envergadura impressionante de 5-7 metros</strong>, o Pteranodon era um dos maiores animais voadores de seu tempo. Seu nome, que significa 'Asa sem Dentes', refere-se ao seu bico longo e desdentado, uma adaptação para capturar peixes em voo.</p>
+          
+          <p>A característica mais distintiva do Pteranodon era sua <strong>grande crista cranial</strong>, que podia atingir até 1,8 metros de comprimento nos machos. Esta crista provavelmente servia para estabilização durante o voo, termorregulação e/ou exibição sexual.</p>
+          
+          <p>O Pteranodon tinha <strong>asas membranosas</strong> sustentadas por um quarto dedo extremamente alongado. Estudos de sua biomecânica sugerem que era um excelente planador que aproveitava as correntes de ar sobre os mares para se deslocar com eficiência energética.</p>
+          
+          <p>Este pterossauro viveu há aproximadamente 86-84 milhões de anos no que era o Mar Interior Ocidental da América do Norte. Alimentava-se principalmente de peixes e outros animais marinhos que capturava mergulhando superficialmente.</p>
+        `,
+                curiosidades: [
+                    "Não era um dinossauro, mas um pterossauro - um réptil voador distinto",
+                    "Tinha uma crista cranial que podia ser maior que seu próprio crânio",
+                    "Foi um dos primeiros pterossauros descobertos na América do Norte",
+                    "Estudos sugerem que podia planar por longas distâncias sobre o oceano",
+                    "Os machos tinham cristas significativamente maiores que as fêmeas"
+                ]
+            },
+            {
+                id: "argentinosaurus",
+                nome: "Argentinossauro",
+                nomeCientifico: "Argentinosaurus huinculensis",
+                significado: "Lagarto da Argentina",
+                periodo: "Cretáceo",
+                localizacao: "Formação Huincul, Argentina",
+                tamanho: "30-35 metros de comprimento",
+                peso: "65-80 toneladas",
+                alimentacao: "herbivoro",
+                descoberta: "1987 por Guillermo Heredia",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Argentinosaurus_NT.jpg/1280px-Argentinosaurus_NT.jpg",
+                descricao: "O Argentinossauro foi possivelmente o maior dinossauro que já existiu, um saurópode colossal que viveu na América do Sul durante o Cretáceo.",
+                descricaoLonga: `
+          <p>O <strong>Argentinosaurus huinculensis</strong> é considerado um dos maiores dinossauros que já existiram, e possivelmente o maior animal terrestre de todos os tempos. Com estimativas de 30-35 metros de comprimento e pesando entre 65-80 toneladas, este saurópode titanossaurídeo era verdadeiramente colossal.</p>
+          
+          <p>Seu nome significa 'Lagarto da Argentina', referindo-se ao país onde foi descoberto. O Argentinossauro era um <strong>titanossauro</strong>, um grupo de saurópodes que atingiu sua máxima diversidade e tamanho durante o Cretáceo, especialmente na América do Sul.</p>
+          
+          <p>Uma única <strong>vértebra do Argentinossauro</strong> mede mais de 1,5 metros de altura, dando uma ideia de sua escala monumental. Seu fêmur (osso da coxa) media aproximadamente 2,5 metros de comprimento - um dos maiores ossos de dinossauro já encontrados.</p>
+          
+          <p>Como todos os saurópodes, o Argentinossauro era <strong>estritamente herbívoro</strong>. Seu longo pescoço permitia alcançar vegetação a grandes alturas, e seu sistema digestivo era altamente eficiente para processar grandes quantidades de plantas com baixo valor nutricional.</p>
+          
+          <p>Este gigante viveu há aproximadamente 96-92 milhões de anos no que é hoje a Patagônia argentina. Seu tamanho colossal provavelmente o protegia da maioria dos predadores, embora o enorme carnívoro Mapusaurus possa ter caçado jovens ou indivíduos doentes.</p>
+        `,
+                curiosidades: [
+                    "É considerado um dos maiores dinossauros que já existiram",
+                    "Uma única vértebra tem mais de 1,5 metros de altura",
+                    "Seu fêmur media aproximadamente 2,5 metros de comprimento",
+                    "Era um titanossauro, grupo que dominou o Cretáceo na América do Sul",
+                    "Sua descoberta ajudou a entender o gigantismo extremo dos saurópodes"
+                ]
+            },
+            {
+                id: "deinonychus",
+                nome: "Deinonychus",
+                nomeCientifico: "Deinonychus antirrhopus",
+                significado: "Garra Terrível",
+                periodo: "Cretáceo",
+                localizacao: "Formação Cloverly, EUA",
+                tamanho: "3-4 metros de comprimento",
+                peso: "70-100 kg",
+                alimentacao: "carnivoro",
+                descoberta: "1964 por John Ostrom",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Deinonychus_BW.jpg/1280px-Deinonychus_BW.jpg",
+                descricao: "O Deinonychus foi um dromaeossaurídeo de médio porte que revolucionou a compreensão dos dinossauros. Sua descoberta sugeriu que alguns dinossauros eram ativos e possivelmente de sangue quente.",
+                descricaoLonga: `
+          <p>O <strong>Deinonychus antirrhopus</strong> foi um dos dinossauros mais importantes para a paleontologia moderna. Sua descoberta na década de 1960 pelo Dr. John Ostrom levou à 'Renascença dos Dinosauros' - uma revisão completa de como entendíamos esses animais.</p>
+          
+          <p>Com 3-4 metros de comprimento e pesando 70-100 kg, o Deinonychus era um <strong>dromaeossaurídeo</strong> de médio porte. Seu nome, que significa 'Garra Terrível', refere-se à enorme garra em foice no segundo dedo de cada pé, que media até 13 cm de comprimento.</p>
+          
+          <p>Esta <strong>garra especializada</strong> era mantida erguida durante a locomoção para manter o corte afiado, sendo abaixada apenas durante o ataque. O Deinonychus provavelmente a usava para infligir ferimentos profundos em presas, possivelmente saltando sobre animais maiores e usando a garra para causar sangramento fatal.</p>
+          
+          <p>O Deinonychus tinha um <strong>esqueleto leve e ossos ocos</strong>, membros posteriores longos adaptados para corrida, e uma cauda rígida que atuava como leme durante manobras rápidas. Suas mãos eram equipadas com três dedos com garras afiadas para agarrar presas.</p>
+          
+          <p>Este dinossauro viveu há aproximadamente 115-108 milhões de anos no que é hoje o oeste dos Estados Unidos. Evidências fósseis sugerem que caçava o iguanodontídeo Tenontosaurus, possivelmente em grupos cooperativos.</p>
+        `,
+                curiosidades: [
+                    "Sua descoberta levou à 'Renascença dos Dinosauros' na paleontologia",
+                    "Inspirou a representação do Velociraptor em Jurassic Park (embora maior)",
+                    "Tinha uma garra em foice de 13 cm que mantinha erguida durante a locomoção",
+                    "Evidências sugerem comportamento de caça cooperativo",
+                    "Seu esqueleto mostra adaptações para um estilo de vida ativo e ágil"
+                ]
+            },
+            {
+                id: "giganotosaurus",
+                nome: "Giganotossauro",
+                nomeCientifico: "Giganotosaurus carolinii",
+                significado: "Lagarto Gigante do Sul",
+                periodo: "Cretáceo",
+                localizacao: "Formação Candeleros, Argentina",
+                tamanho: "12-13 metros de comprimento",
+                peso: "6-8 toneladas",
+                alimentacao: "carnivoro",
+                descoberta: "1993 por Rubén Carolini",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Giganotosaurus_BW.jpg/1280px-Giganotosaurus_BW.jpg",
+                descricao: "O Giganotossauro foi um dos maiores dinossauros carnívoros, rivalizando em tamanho com o T. rex. Este predador sul-americano caçava os gigantescos saurópodes de sua época.",
+                descricaoLonga: `
+          <p>O <strong>Giganotosaurus carolinii</strong> foi um dos maiores terópodes que já existiram, rivalizando em tamanho com o famoso Tyrannosaurus rex. Com 12-13 metros de comprimento e pesando 6-8 toneladas, este carcarodontossaurídeo era o predador de topo do Cretáceo Médio na América do Sul.</p>
+          
+          <p>Seu nome significa 'Lagarto Gigante do Sul', referindo-se tanto ao seu tamanho colossal quanto à sua localização geográfica. O Giganotossauro era um <strong>carcarodontossaurídeo</strong>, um grupo de grandes terópodes caracterizados por crânios grandes e dentes em forma de lâmina.</p>
+          
+          <p>O crânio do Giganotossauro media até 1,8 metros de comprimento - ligeiramente maior que o do T. rex. Seus <strong>dentes eram afiados e serrilhados</strong>, perfeitos para cortar carne, mas não tão robustos quanto os do T. rex, sugerindo diferentes estratégias de alimentação.</p>
+          
+          <p>Diferentemente do T. rex, o Giganotossauro tinha <strong>braços mais longos com três dedos funcionais</strong>. Seus membros posteriores eram poderosos, adaptados para perseguição, e seu cérebro era menor e mais primitivo que o do T. rex.</p>
+          
+          <p>Este gigante carnívoro viveu há aproximadamente 99-97 milhões de anos na Patagônia argentina. Caçava os enormes saurópodes titanossauros como o Argentinossauro, possivelmente em grupos para abater presas tão colossais.</p>
+        `,
+                curiosidades: [
+                    "Rivalizava em tamanho com o Tyrannosaurus rex",
+                    "Tinha o crânio ligeiramente maior que o do T. rex",
+                    "Era um carcarodontossaurídeo, diferente do T. rex (tiranossaurídeo)",
+                    "Seus dentes eram mais afiados mas menos robustos que os do T. rex",
+                    "Possivelmente caçava em grupos para abater saurópodes gigantes"
+                ]
+            },
+            {
+                id: "carnotaurus",
+                nome: "Carnotauro",
+                nomeCientifico: "Carnotaurus sastrei",
+                significado: "Touro Carnívoro",
+                periodo: "Cretáceo",
+                localizacao: "Formação La Colonia, Argentina",
+                tamanho: "7,5-9 metros de comprimento",
+                peso: "1,3-2,1 toneladas",
+                alimentacao: "carnivoro",
+                descoberta: "1984 por José Bonaparte",
+                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Carnotaurus_BW.jpg/1280px-Carnotaurus_BW.jpg",
+                descricao: "O Carnotauro foi um terópode único com chifres acima dos olhos e braços extremamente reduzidos. Este predador sul-americano era construído para velocidade.",
+                descricaoLonga: `
+          <p>O <strong>Carnotaurus sastrei</strong> foi um dos terópodes mais distintivos do Cretáceo Superior. Seu nome, que significa 'Touro Carnívoro', refere-se aos chifres proeminentes acima de seus olhos, uma característica única entre os grandes terópodes.</p>
+          
+          <p>Com 7,5-9 metros de comprimento e pesando 1,3-2,1 toneladas, o Carnotauro era um <strong>abelissaurídeo</strong> - um grupo de terópodes que floresceu no Gondwana (os continentes do sul) durante o Cretáceo. Sua característica mais notável eram os <strong>chifres ósseos acima das órbitas oculares</strong>.</p>
+          
+          <p>Os <strong>braços do Carnotauro</strong> eram notavelmente curtos e vestigiais, ainda mais reduzidos que os do T. rex. Tinham quatro dedos, mas apenas os superiores tinham ossos significativos, sendo praticamente inúteis para agarrar presas.</p>
+          
+          <p>O Carnotauro tinha um <strong>crânio alto e estreito</strong> com dentes relativamente pequenos. Seu pescoço era musculoso e suas vértebras apresentavam extensões ósseas que podem ter suportado poderosos músculos da mandíbula. Seu corpo era construído para velocidade, com membros posteriores longos e uma cauda rígida.</p>
+          
+          <p>Este terópode incomum viveu há aproximadamente 72-69 milhões de anos na Patagônia argentina. A impressão de pele fossilizada mostra que tinha escamas cônicas e não sobreposições, diferente da maioria dos outros terópodes.</p>
+        `,
+                curiosidades: [
+                    "Tinha chifres únicos acima dos olhos, como um touro",
+                    "Seus braços eram extremamente reduzidos, ainda mais que os do T. rex",
+                    "Tinha impressões de pele preservadas mostrando escamas cônicas",
+                    "Era um abelissaurídeo, grupo de terópodes do hemisfério sul",
+                    "Sua construção corporal sugere que era um corredor rápido"
+                ]
+            }
+        ];
+
+        // Função para renderizar os cards dos dinossauros
+        function renderDinoCards() {
+            const dinoGrid = document.getElementById('dinoGrid');
+            dinoGrid.innerHTML = '';
+
+            dinossauros.forEach(dino => {
+                const periodoColor = {
+                    'Triássico': 'warning',
+                    'Jurássico': 'primary',
+                    'Cretáceo': 'danger'
+                }[dino.periodo];
+
+                const alimentacaoColor = {
+                    'carnivoro': 'danger',
+                    'herbivoro': 'success',
+                    'onivoro': 'info'
+                }[dino.alimentacao];
+
+                const cardHTML = `
+          <div class="col-md-6 col-lg-4 dino-card" data-periodo="${dino.periodo.toLowerCase()}" data-alimentacao="${dino.alimentacao}">
+            <div class="card h-100 periodo-card position-relative">
+              <span class="badge bg-${periodoColor} periodo-badge">${dino.periodo}</span>
+              <div class="card-img-container">
+                <img src="${dino.imagem}" class="card-img-top" alt="${dino.nome}">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-success">${dino.nome}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${dino.significado}</h6>
+                <p class="card-text text-secondary flex-grow-1">
+                  ${dino.descricao}
+                </p>
+                <div class="mt-auto">
+                  <span class="badge bg-${alimentacaoColor} alimentacao-badge me-1">${dino.alimentacao === 'carnivoro' ? 'Carnívoro' : dino.alimentacao === 'herbivoro' ? 'Herbívoro' : 'Onívoro'}</span>
+                  <span class="badge bg-secondary alimentacao-badge">${dino.tamanho.split(' ')[0]}</span>
+                  <button class="btn btn-sm btn-outline-success mt-2 w-100" data-bs-toggle="modal" data-bs-target="#dinoModal" data-dino="${dino.id}">
+                    Ver Detalhes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+                dinoGrid.innerHTML += cardHTML;
+            });
+        }
+
+        // Função para filtrar dinossauros
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const dinoCards = document.querySelectorAll('.dino-card');
+            const searchInput = document.getElementById('searchInput');
+            const emptyState = document.getElementById('emptyState');
+
+            // Filtro por período/alimentação
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const filter = this.getAttribute('data-filter');
+
+                    // Atualizar botão ativo
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Aplicar filtro
+                    let visibleCount = 0;
+                    dinoCards.forEach(card => {
+                        if (filter === 'all' ||
+                            card.getAttribute('data-periodo') === filter ||
+                            card.getAttribute('data-alimentacao') === filter) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Mostrar/ocultar estado vazio
+                    emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+                });
+            });
+
+            // Filtro por pesquisa
+            searchInput.addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase();
+                let visibleCount = 0;
+
+                dinoCards.forEach(card => {
+                    const name = card.querySelector('.card-title').textContent.toLowerCase();
+                    const description = card.querySelector('.card-text').textContent.toLowerCase();
+
+                    if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Mostrar/ocultar estado vazio
+                emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        }
+
+        // Configurar modal
+        function setupModal() {
+            const dinoModal = document.getElementById('dinoModal');
+            const modalTitle = document.getElementById('dinoModalLabel');
+            const modalContent = document.getElementById('modalContent');
+
+            dinoModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const dinoKey = button.getAttribute('data-dino');
+                const dino = dinossauros.find(d => d.id === dinoKey);
+
+                if (dino) {
+                    modalTitle.textContent = dino.nome;
+
+                    let curiosidadesHTML = '';
+                    if (dino.curiosidades && dino.curiosidades.length > 0) {
+                        curiosidadesHTML = `
+              <h5 class="text-success mt-4">
+                <i class="bi bi-lightbulb me-2"></i>Curiosidades
+              </h5>
+              <ul class="list-group list-group-flush">
+            `;
+                        dino.curiosidades.forEach(curiosidade => {
+                            curiosidadesHTML += `
+                <li class="list-group-item bg-transparent text-secondary border-secondary">
+                  <i class="bi bi-arrow-right-short text-success me-2"></i>${curiosidade}
+                </li>
+              `;
+                        });
+                        curiosidadesHTML += '</ul>';
+                    }
+
+                    modalContent.innerHTML = `
+            <img src="${dino.imagem}" class="modal-dinosaur-img" alt="${dino.nome}">
+            <div class="row">
+              <div class="col-md-8">
+                <h4 class="text-success">${dino.nomeCientifico}</h4>
+                <div class="text-secondary">
+                  ${dino.descricaoLonga || dino.descricao}
+                </div>
+                ${curiosidadesHTML}
+              </div>
+              <div class="col-md-4">
+                <div class="dino-stats">
+                  <h5 class="text-success">
+                    <i class="bi bi-info-circle me-2"></i>Informações
+                  </h5>
+                  <p class="mb-2"><strong>Significado:</strong> ${dino.significado}</p>
+                  <p class="mb-2"><strong>Período:</strong> ${dino.periodo}</p>
+                  <p class="mb-2"><strong>Localização:</strong> ${dino.localizacao}</p>
+                  <p class="mb-2"><strong>Tamanho:</strong> ${dino.tamanho}</p>
+                  <p class="mb-2"><strong>Peso:</strong> ${dino.peso}</p>
+                  <p class="mb-2"><strong>Alimentação:</strong> ${dino.alimentacao === 'carnivoro' ? 'Carnívoro' : dino.alimentacao === 'herbivoro' ? 'Herbívoro' : 'Onívoro'}</p>
+                  <p class="mb-0"><strong>Descoberta:</strong> ${dino.descoberta}</p>
+                </div>
+              </div>
+            </div>
+          `;
+                }
+            });
+        }
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            renderDinoCards();
+            setupFilters();
+            setupModal();
+        });
+    </script>
+
+</body>
+
+</html>
