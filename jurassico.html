@@ -3,36 +3,44 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Período Jurássico</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dinotrem - Explore o Período Jurássico, a Era de Ouro dos Dinossauros">
+  <title>Dinotrem | Período Jurássico</title>
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
-
+<style>
+  .hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/periodo-triassico.png') center/cover no-repeat !important;
+}
+</style>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg shadow-sm fixed-top" id="mainNavbar">
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
     <div class="container py-2">
-      <a class="navbar-brand fw-bold text-uppercase text-success fs-3" href="index.html">Dinossauros</a>
+      <a class="navbar-brand fw-bold text-uppercase text-success fs-3" href="index.html">
+        <i class="bi bi-tree-fill me-2"></i>Dinotrem
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav ms-auto gap-lg-2">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
           <li class="nav-item"><a class="nav-link px-3" href="triassico.html">Triássico</a></li>
           <li class="nav-item"><a class="nav-link active px-3" href="jurassico.html">Jurássico</a></li>
           <li class="nav-item"><a class="nav-link px-3" href="cretaceo.html">Cretáceo</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="espinossauro.html">Espinossauro</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="enciclopedia.html">Enciclopédia</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="dino-mes.html">Dinossauro do Mês</a></li>
           <li class="nav-item"><a class="nav-link px-3" href="formulario.html">Contato</a></li>
         </ul>
 
-        <!-- Botão tema -->
         <div class="dropdown ms-lg-3 mt-3 mt-lg-0">
-          <button class="btn btn-outline-success dropdown-toggle" id="themeToggle" type="button"
+          <button class="btn btn-outline-success dropdown-toggle" type="button" id="themeToggle"
             data-bs-toggle="dropdown">
             <i class="bi bi-circle-half"></i>
           </button>
@@ -42,208 +50,438 @@
             <li><button class="dropdown-item" data-theme="dark">Escuro</button></li>
           </ul>
         </div>
-
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="hero d-flex align-items-center justify-content-center text-center text-light" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/a2/Jurassic_landscape.jpg');
-           background-size:cover; background-position:center; height:90vh;">
+  <header class="hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="container">
-      <h1 class="display-3 fw-bold">Período Jurássico</h1>
-      <p class="lead text-secondary">
-        201 a 145 milhões de anos atrás — a era dos gigantes herbívoros e dos predadores colossais.
-      </p>
+      <h1 class="display-3 fw-bold mb-4">Período Jurássico</h1>
+      <p class="lead fs-4 mb-4">A Era de Ouro dos Dinossauros</p>
+      <p class="mb-5">201 - 145 milhões de anos atrás</p>
     </div>
   </header>
 
-  <!-- INTRODUÇÃO -->
-  <main class="container py-5 mt-5 text-light">
+  <main class="container py-5">
 
-    <h2 class="text-success text-center mb-4">A Era dos Colossos</h2>
-    <p class="text-secondary fs-5 text-center mb-5">
-      O <strong>Jurássico</strong> marcou um período de intensa vida e diversidade. Com o clima quente e úmido,
-      florestas densas e vastas planícies se espalharam pelo planeta.
-      Foi aqui que surgiram os <strong>maiores herbívoros que já caminharam na Terra</strong>, além de predadores
-      impressionantes que moldaram o equilíbrio ecológico da época.
-    </p>
-
-    <!-- COMO ERA O MUNDO -->
+    <!-- INTRODUÇÃO -->
     <section class="mb-5">
-      <h3 class="text-success mb-3">Como Era o Mundo no Jurássico?</h3>
-
-      <p class="text-secondary">
-        Durante o Jurássico, a <strong>Pangeia começou a se fragmentar</strong>, formando os primeiros
-        contornos dos continentes modernos. O clima favoreceu a criação de florestas de coníferas, cicadófitas e
-        samambaias
-        gigantes. A vida se multiplicou em terra, mares e céus — incluindo os primeiros grandes
-        <strong>pterossauros</strong>.
-      </p>
-
-      <div class="text-center mt-4">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Jurassic_Scene.jpg"
-          class="img-fluid rounded shadow" alt="Mundo Jurássico">
+      <h2 class="text-success mb-4 text-center">O Apogeu dos Gigantes</h2>
+      
+      <div class="row">
+        <div class="col-lg-8">
+          <p class="text-secondary fs-5">
+            O <strong class="text-success">Período Jurássico</strong> representa a verdadeira <strong>"Era de Ouro" dos dinossauros</strong>, 
+            durando aproximadamente <strong>56 milhões de anos</strong> - de <strong>201 a 145 milhões de anos atrás</strong>. 
+            Este período testemunhou a diversificação e dominação absoluta dos dinossauros em todos os ecossistemas terrestres.
+          </p>
+          
+          <p class="text-secondary">
+            Após a extinção do final do Triássico, que eliminou a maioria dos competidores, os dinossauros 
+            expandiram-se para ocupar todos os nichos ecológicos disponíveis. Foi durante o Jurássico que 
+            surgiram os <strong>maiores animais terrestres de todos os tempos</strong> - os gigantescos saurópodes - 
+            e os ecossistemas atingiram níveis de complexidade nunca antes vistos.
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <div class="card bg-dark border-success facts-card">
+            <div class="card-body">
+              <h5 class="card-title text-success">
+                <i class="bi bi-info-circle me-2"></i>Fatos Rápidos
+              </h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><strong>Duração:</strong> 201-145 Ma</li>
+                <li class="mb-2"><strong>Continentes:</strong> Laurásia e Gondwana</li>
+                <li class="mb-2"><strong>Clima:</strong> Quente e úmido</li>
+                <li class="mb-2"><strong>Plantas dominantes:</strong> Coníferas e samambaias</li>
+                <li class="mb-2"><strong>Maior dinossauro:</strong> Argentinossauro (35m)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- LISTA DE DINOSSAUROS -->
-    <h2 class="text-center text-success my-5">Principais Dinossauros do Jurássico</h2>
-
-    <div class="row g-4">
-
-      <!-- BRACHIOSAURUS -->
-      <div class="col-md-4">
-        <div class="card periodo-card h-100 shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Brachiosaurus_dinosaur.png" class="card-img-top"
-            alt="Brachiosaurus">
-          <div class="card-body">
-            <h5 class="card-title text-success">Brachiosaurus</h5>
-            <p class="text-secondary">
-              Um dos maiores herbívoros do Jurássico, com postura única: suas patas dianteiras eram mais longas,
-              elevando o pescoço como uma girafa pré-histórica.
-            </p>
-            <ul class="text-secondary small">
-              <li><strong>Tamanho:</strong> 18 a 22 metros</li>
-              <li><strong>Peso:</strong> até 50 toneladas</li>
-              <li><strong>Curiosidade:</strong> podia se alimentar de árvores com mais de 14 metros de altura.</li>
-            </ul>
+    <!-- O MUNDO NO JURÁSSICO -->
+    <section class="mb-5">
+      <h3 class="text-success mb-3">Como Era o Mundo no Jurássico?</h3>
+      
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-secondary">
+            Durante o Jurássico, o <strong>supercontinente Pangeia</strong> começou a se fragmentar 
+            significativamente, dividindo-se em dois grandes continentes: <strong>Laurásia ao norte</strong> 
+            e <strong>Gondwana ao sul</strong>. Esta separação criou novos mares interiores e litorais, 
+            permitindo o desenvolvimento de ecossistemas costeiros diversificados.
+          </p>
+          
+          <p class="text-secondary">
+            O clima era predominantemente <strong>quente e úmido</strong>, com altos níveis de dióxido 
+            de carbono na atmosfera. Não havia calotas polares, e florestas exuberantes se estendiam 
+            até altas latitudes. Esta combinação de clima favorável e paisagens diversificadas criou 
+            as condições ideais para a explosão de biodiversidade dos dinossauros.
+          </p>
+          
+          <p class="text-secondary">
+            A vida vegetal era dominada por <strong>coníferas, ginkgos, cicas e samambaias</strong>. 
+            As plantas com flores (angiospermas) começaram a aparecer no final do período, mas ainda 
+            eram raras e pouco diversificadas.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <div class="card bg-dark border-success">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Jurassic_landscape.jpg/1280px-Jurassic_landscape.jpg" class="card-img-top" alt="Paisagem do Jurássico">
+            <div class="card-body">
+              <p class="card-text text-center text-muted"><small>Reconstrução artística do ambiente jurássico</small></p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ALLOSAURUS -->
-      <div class="col-md-4">
-        <div class="card periodo-card h-100 shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Allosaurus_BW.jpg" class="card-img-top"
-            alt="Allosaurus">
-          <div class="card-body">
-            <h5 class="card-title text-success">Allossauro</h5>
-            <p class="text-secondary">
-              O principal predador terrestre do Jurássico. Ágil, feroz e altamente adaptado para caça em grupo.
-            </p>
-            <ul class="text-secondary small">
-              <li><strong>Tamanho:</strong> 8 a 12 metros</li>
-              <li><strong>Comportamento:</strong> possivelmente caçava em bandos</li>
-              <li><strong>Curiosidade:</strong> seus dentes eram serrilhados, perfeitos para cortar carne.</li>
-            </ul>
+    <!-- A ERA DOS GIGANTES -->
+    <section class="mb-5">
+      <h3 class="text-success mb-4">A Era dos Gigantes</h3>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p class="text-secondary">
+            O Jurássico testemunhou o surgimento dos <strong>maiores animais terrestres que já existiram</strong> - 
+            os saurópodes. Estas criaturas colossais desenvolveram adaptações extraordinárias:
+          </p>
+          
+          <ul class="text-secondary">
+            <li><strong>Pescoços extremamente longos</strong> para alcançar vegetação inacessível</li>
+            <li><strong>Sistemas digestivos eficientes</strong> para processar grandes quantidades de plantas</li>
+            <li><strong>Estruturas ósseas pneumáticas</strong> que reduziam o peso sem perder força</li>
+            <li><strong>Comportamentos sociais complexos</strong>, vivendo em manadas para proteção</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div class="card bg-dark border-success">
+            <div class="card-body">
+              <h5 class="card-title text-success">Inovações Evolutivas</h5>
+              <p class="card-text text-secondary">
+                Os dinossauros do Jurássico desenvolveram diversas adaptações que lhes permitiram 
+                dominar todos os habitats. Os terópodes tornaram-se predadores mais eficientes, 
+                os ornitísquios diversificaram-se em herbívoros especializados, e os primeiros 
+                pássaros verdadeiros evoluíram dos pequenos dinossauros terópodes.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- STEGOSAURUS -->
-      <div class="col-md-4">
-        <div class="card periodo-card h-100 shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Stegosaurus_BW.jpg" class="card-img-top"
-            alt="Stegosaurus">
-          <div class="card-body">
-            <h5 class="card-title text-success">Estegossauro</h5>
-            <p class="text-secondary">
-              Herbívoro famoso por suas grandes placas dorsais e sua poderosa cauda com espinhos.
-            </p>
-            <ul class="text-secondary small">
-              <li><strong>Tamanho:</strong> 9 metros</li>
-              <li><strong>Arma:</strong> cauda com quatro espinhos (thagomizer)</li>
-              <li><strong>Curiosidade:</strong> seu cérebro era do tamanho de uma noz grande.</li>
-            </ul>
+    <!-- PRINCIPAIS DINOSSAUROS DO JURÁSSICO -->
+    <section class="mb-5">
+      <h3 class="text-success mb-4 text-center">Principais Dinossauros do Jurássico</h3>
+
+      <div class="row g-4">
+        <!-- BRACHIOSSAURO -->
+        <div class="col-md-4">
+          <div class="card periodo-card h-100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Brachiosaurus_BW.jpg/1280px-Brachiosaurus_BW.jpg" class="card-img-top" alt="Brachiosaurus">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-success">Brachiosaurus</h5>
+              <h6 class="card-subtitle mb-2 text-muted">"Lagarto Braço"</h6>
+              <p class="card-text text-secondary flex-grow-1">
+                Um dos saurópodes mais icônicos, conhecido por seu pescoço extremamente longo e postura única com membros anteriores mais longos que os posteriores.
+              </p>
+              <div class="mt-auto">
+                <ul class="list-unstyled text-secondary small">
+                  <li><strong>Tamanho:</strong> 25-26 metros</li>
+                  <li><strong>Peso:</strong> 28-58 toneladas</li>
+                  <li><strong>Alimentação:</strong> Herbívora</li>
+                  <li><strong>Descoberta:</strong> 1900, EUA</li>
+                </ul>
+                <a href="enciclopedia.html#brachiossauro" class="btn btn-sm btn-outline-success mt-2">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALLOSSAURO -->
+        <div class="col-md-4">
+          <div class="card periodo-card h-100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Allosaurus_BW.jpg/1280px-Allosaurus_BW.jpg" class="card-img-top" alt="Allosaurus">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-success">Allosaurus</h5>
+              <h6 class="card-subtitle mb-2 text-muted">"Lagarto Diferente"</h6>
+              <p class="card-text text-secondary flex-grow-1">
+                O predador de topo do Jurássico Superior na América do Norte. Ágil e poderoso, caçava grandes saurópodes e estegossauros.
+              </p>
+              <div class="mt-auto">
+                <ul class="list-unstyled text-secondary small">
+                  <li><strong>Tamanho:</strong> 8-12 metros</li>
+                  <li><strong>Peso:</strong> 1-2 toneladas</li>
+                  <li><strong>Alimentação:</strong> Carnívora</li>
+                  <li><strong>Descoberta:</strong> 1877, EUA</li>
+                </ul>
+                <a href="enciclopedia.html#allosaurus" class="btn btn-sm btn-outline-success mt-2">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEGOSSAURO -->
+        <div class="col-md-4">
+          <div class="card periodo-card h-100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Stegosaurus_BW.jpg/1280px-Stegosaurus_BW.jpg" class="card-img-top" alt="Stegosaurus">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-success">Stegosaurus</h5>
+              <h6 class="card-subtitle mb-2 text-muted">"Lagarto Telhado"</h6>
+              <p class="card-text text-secondary flex-grow-1">
+                Herbívoro famoso por suas placas dorsais e espigões na cauda. Um dos dinossauros mais reconhecíveis de todos os tempos.
+              </p>
+              <div class="mt-auto">
+                <ul class="list-unstyled text-secondary small">
+                  <li><strong>Tamanho:</strong> 7-9 metros</li>
+                  <li><strong>Peso:</strong> 4-5 toneladas</li>
+                  <li><strong>Alimentação:</strong> Herbívora</li>
+                  <li><strong>Descoberta:</strong> 1877, EUA</li>
+                </ul>
+                <a href="enciclopedia.html#stegosaurus" class="btn btn-sm btn-outline-success mt-2">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DIPLODOCUS -->
+        <div class="col-md-4">
+          <div class="card periodo-card h-100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Diplodocus_BW.jpg/1280px-Diplodocus_BW.jpg" class="card-img-top" alt="Diplodocus">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-success">Diplodocus</h5>
+              <h6 class="card-subtitle mb-2 text-muted">"Viga Dupla"</h6>
+              <p class="card-text text-secondary flex-grow-1">
+                Um dos saurópodes mais longos, conhecido por seu pescoço e cauda extremamente longos. Usava a cauda como chicote para defesa.
+              </p>
+              <div class="mt-auto">
+                <ul class="list-unstyled text-secondary small">
+                  <li><strong>Tamanho:</strong> 25-33 metros</li>
+                  <li><strong>Peso:</strong> 10-16 toneladas</li>
+                  <li><strong>Alimentação:</strong> Herbívora</li>
+                  <li><strong>Descoberta:</strong> 1877, EUA</li>
+                </ul>
+                <a href="enciclopedia.html#diplodocus" class="btn btn-sm btn-outline-success mt-2">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERATOSSAURO -->
+        <div class="col-md-4">
+          <div class="card periodo-card h-100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Ceratosaurus_BW.jpg/1280px-Ceratosaurus_BW.jpg" class="card-img-top" alt="Ceratosaurus">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-success">Ceratosaurus</h5>
+              <h6 class="card-subtitle mb-2 text-muted">"Lagarto com Chifre"</h6>
+              <p class="card-text text-secondary flex-grow-1">
+                Predador de médio porte com um chifre nasal distintivo. Mais ágil que o Allosaurus, possivelmente caçando presas menores.
+              </p>
+              <div class="mt-auto">
+                <ul class="list-unstyled text-secondary small">
+                  <li><strong>Tamanho:</strong> 5-7 metros</li>
+                  <li><strong>Peso:</strong> 500-1000 kg</li>
+                  <li><strong>Alimentação:</strong> Carnívora</li>
+                  <li><strong>Descoberta:</strong> 1884, EUA</li>
+                </ul>
+                <a href="enciclopedia.html#ceratosaurus" class="btn btn-sm btn-outline-success mt-2">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APATOSSAURO -->
+        <div class="col-md-4">
+          <div class="card periodo-card h-100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Apatosaurus_BW.jpg/1280px-Apatosaurus_BW.jpg" class="card-img-top" alt="Apatosaurus">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-success">Apatosaurus</h5>
+              <h6 class="card-subtitle mb-2 text-muted">"Lagarto Enganador"</h6>
+              <p class="card-text text-secondary flex-grow-1">
+                Conhecido anteriormente como Brontossauro, era um saurópode maciço com pescoço e cauda longos, porém mais robusto que o Diplodocus.
+              </p>
+              <div class="mt-auto">
+                <ul class="list-unstyled text-secondary small">
+                  <li><strong>Tamanho:</strong> 21-23 metros</li>
+                  <li><strong>Peso:</strong> 16-22 toneladas</li>
+                  <li><strong>Alimentação:</strong> Herbívora</li>
+                  <li><strong>Descoberta:</strong> 1877, EUA</li>
+                </ul>
+                <a href="enciclopedia.html#apatosaurus" class="btn btn-sm btn-outline-success mt-2">Saiba mais</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- MAIS DINOSSAUROS -->
-    <div class="row g-4 mt-4">
-
-      <!-- DIPLODOCUS -->
-      <div class="col-md-4">
-        <div class="card periodo-card h-100 shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Diplodocus_BW.jpg" class="card-img-top"
-            alt="Diplodocus">
-          <div class="card-body">
-            <h5 class="card-title text-success">Diplodocus</h5>
-            <p class="text-secondary">Famoso por seu corpo extremamente longo e cauda semelhante a um chicote.</p>
-            <ul class="text-secondary small">
-              <li><strong>Tamanho:</strong> até 25 metros</li>
-              <li><strong>Curiosidade:</strong> sua cauda podia produzir estalos como um chicote.</li>
-            </ul>
+    <!-- OUTRAS FORMAS DE VIDA -->
+    <section class="mb-5">
+      <h3 class="text-success mb-3">Outras Formas de Vida no Jurássico</h3>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card bg-dark border-success mb-3">
+            <div class="card-body">
+              <h5 class="card-title text-success">Répteis Marinhos</h5>
+              <ul class="text-secondary">
+                <li><strong>Plesiossauros:</strong> Répteis marinhos de pescoço longo que dominavam os mares</li>
+                <li><strong>Ictiossauros:</strong> Atingiram seu auge de diversidade no Jurássico</li>
+                <li><strong>Crocolomorfos marinhos:</strong> Parentes dos crocodilos adaptados à vida marinha</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="card bg-dark border-success mb-3">
+            <div class="card-body">
+              <h5 class="card-title text-success">Os Primeiros Pássaros</h5>
+              <ul class="text-secondary">
+                <li><strong>Archaeopteryx:</strong> Considerada a primeira ave, com características de dinossauro e ave</li>
+                <li><strong>Anchiornis:</strong> Pequeno dinossauro emplumado que podia planar</li>
+                <li><strong>Xiaotingia:</strong> Outro dinossauro emplumado próximo à origem das aves</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card bg-dark border-success mb-3">
+            <div class="card-body">
+              <h5 class="card-title text-success">Outros Animais Terrestres</h5>
+              <ul class="text-secondary">
+                <li><strong>Mamíferos:</strong> Pequenos, noturnos e diversificando-se em várias linhagens</li>
+                <li><strong>Pterossauros:</strong> Diversos tipos, desde pequenos até envergaduras de 3 metros</li>
+                <li><strong>Insetos:</strong> Grande diversificação, incluindo as primeiras formigas e vespas</li>
+                <li><strong>Anfíbios:</strong> Salamandras e outros anfíbios modernos apareceram</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="card bg-dark border-success mb-3">
+            <div class="card-body">
+              <h5 class="card-title text-success">Ecossistemas Únicos</h5>
+              <p class="text-secondary">
+                A Formação Morrison na América do Norte preserva um dos ecossistemas jurássicos mais estudados, 
+                com dezenas de espécies de dinossauros coexistindo em um ambiente de planícies aluviais e florestas.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- CAMARASAURUS -->
-      <div class="col-md-4">
-        <div class="card periodo-card h-100 shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Camarasaurus_BW.jpg" class="card-img-top"
-            alt="Camarasaurus">
-          <div class="card-body">
-            <h5 class="card-title text-success">Camarasaurus</h5>
-            <p class="text-secondary">Um grande herbívoro robusto, muito comum na América do Norte.</p>
-            <ul class="text-secondary small">
-              <li><strong>Tamanho:</strong> 18 metros</li>
-              <li><strong>Curiosidade:</strong> seus dentes eram adaptados para mastigar plantas mais duras.</li>
-            </ul>
+    <!-- FÓSSEIS FAMOSOS E DESCOBERTAS -->
+    <section class="mb-5">
+      <h3 class="text-success mb-3">Fósseis Famosos e Descobertas</h3>
+      
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-secondary">
+            O Jurássico é particularmente bem representado no registro fóssil, especialmente através de 
+            formações geológicas famosas como:
+          </p>
+          
+          <ul class="text-secondary">
+            <li><strong>Formação Morrison (EUA):</strong> Uma das mais ricas em dinossauros do mundo</li>
+            <li><strong>Formação Solnhofen (Alemanha):</strong> Conhecida por fósseis excepcionalmente preservados</li>
+            <li><strong>Formação Tendaguru (Tanzânia):</strong> Importante sítio africano de dinossauros jurássicos</li>
+            <li><strong>Formação Yixian (China):</strong> Revelou dinossauros emplumados extraordinários</li>
+          </ul>
+          
+          <p class="text-secondary">
+            A <strong>Formação Solnhofen</strong> é especialmente notável por preservar não apenas ossos, 
+            mas também impressões de penas, tecidos moles e até mesmo o contorno de asas de pterossauros. 
+            Foi aqui que o famoso <strong>Archaeopteryx</strong> foi descoberto, fornecendo evidências 
+            cruciais para a teoria da evolução das aves a partir dos dinossauros.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <div class="card bg-dark border-warning">
+            <div class="card-body">
+              <h5 class="card-title text-warning">
+                <i class="bi bi-gem me-2"></i>Archaeopteryx
+              </h5>
+              <p class="card-text text-secondary">
+                Descoberto em 1861, este fóssil alemão é um dos mais importantes já encontrados, 
+                mostrando claramente características intermediárias entre dinossauros e aves.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- PTERODACTYLUS -->
-      <div class="col-md-4">
-        <div class="card periodo-card h-100 shadow-lg">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Pterodactylus_antiquus.jpg" class="card-img-top"
-            alt="Pterodactylus">
-          <div class="card-body">
-            <h5 class="card-title text-success">Pterodactylus</h5>
-            <p class="text-secondary">Um dos primeiros pterossauros bem documentados, dominando os céus do Jurássico.
-            </p>
-            <ul class="text-secondary small">
-              <li><strong>Envergadura:</strong> até 1 metro</li>
-              <li><strong>Curiosidade:</strong> alimentava-se de peixes próximos às costas.</li>
-            </ul>
-          </div>
+    <!-- CHAMADA PARA ENCICLOPÉDIA -->
+    <section class="py-5 px-4 rounded" style="background: linear-gradient(135deg, #1a472a 0%, #2d4a2d 100%);">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h3 class="text-white mb-3">Explore Mais Dinossauros Jurássicos!</h3>
+          <p class="text-light mb-4">Nossa enciclopédia completa possui informações detalhadas sobre todas as espécies de dinossauros do período Jurássico.</p>
+          <a href="enciclopedia.html" class="btn btn-outline-light btn-lg">
+            <i class="bi bi-book me-2"></i>Acessar Enciclopédia
+          </a>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="bi bi-journal-text display-1 text-warning"></i>
         </div>
       </div>
+    </section>
 
-    </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="mt-5 pt-5 pb-4 text-light" style="background: linear-gradient(90deg,#3a5f43,#a57b43);">
+  <footer class="mt-5 pt-5 pb-4 text-light" style="background: linear-gradient(90deg,#1a472a,#2d4a2d);">
 
     <div class="container">
       <div class="row">
 
+        <!-- LOGO / SOBRE -->
         <div class="col-md-3 mb-4">
-          <h4 class="fw-bold"><i class="bi bi-globe-americas"></i> Mesozoic Era Explorer</h4>
+          <h4 class="fw-bold"><i class="bi bi-tree-fill me-2"></i>Dinotrem</h4>
           <p class="small">
-            © 2024 Mesozoic Era Explorer. Explore o fascinante mundo dos dinossauros e da paleontologia.
+            © 2024 Dinotrem. Todos os direitos reservados.
+            Explore o fascinante mundo dos dinossauros e da paleontologia.
           </p>
+          <div class="mt-3">
+            <a href="#" class="text-light me-2"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-twitter fs-5"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" class="text-light"><i class="bi bi-youtube fs-5"></i></a>
+          </div>
         </div>
 
+        <!-- PERÍODOS -->
         <div class="col-md-3 mb-4">
           <h5 class="fw-bold mb-3">Períodos</h5>
           <ul class="list-unstyled small">
-            <li><a href="triassico.html" class="text-light text-decoration-none">Triássico</a></li>
-            <li><a href="jurassico.html" class="text-light text-decoration-none">Jurássico</a></li>
-            <li><a href="cretaceo.html" class="text-light text-decoration-none">Cretáceo</a></li>
+            <li><a href="triassico.html" class="text-light text-decoration-none">Triássico (252–201 Ma)</a></li>
+            <li><a href="jurassico.html" class="text-light text-decoration-none">Jurássico (201–145 Ma)</a></li>
+            <li><a href="cretaceo.html" class="text-light text-decoration-none">Cretáceo (145–66 Ma)</a></li>
           </ul>
         </div>
 
+        <!-- RECURSOS -->
         <div class="col-md-3 mb-4">
           <h5 class="fw-bold mb-3">Recursos</h5>
           <ul class="list-unstyled small">
-            <li>Enciclopédia</li>
-            <li>Votação do Mês</li>
-            <li>Contato</li>
-            <li>Submissões</li>
+            <li><a href="enciclopedia.html" class="text-light text-decoration-none">Enciclopédia</a></li>
+            <li><a href="dino-mes.html" class="text-light text-decoration-none">Votação do Mês</a></li>
+            <li><a href="formulario.html" class="text-light text-decoration-none">Contato</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Submissões</a></li>
           </ul>
         </div>
 
+        <!-- INFORMAÇÕES EXTRA -->
         <div class="col-md-3 mb-4">
           <h5 class="fw-bold mb-3">Informações</h5>
           <ul class="list-unstyled small">
-            <li><i class="bi bi-journal-text"></i> Conteúdo científico</li>
-            <li><i class="bi bi-mortarboard"></i> Material educativo</li>
-            <li><i class="bi bi-people"></i> Comunidade</li>
+            <li><i class="bi bi-journal-text"></i> Baseado em pesquisas científicas</li>
+            <li><i class="bi bi-mortarboard"></i> Conteúdo educativo</li>
+            <li><i class="bi bi-people"></i> Comunidade de paleontologia</li>
             <li><i class="bi bi-globe"></i> Acesso mundial</li>
           </ul>
         </div>

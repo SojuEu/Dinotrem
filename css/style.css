@@ -7,22 +7,49 @@ body {
   transition: background-color .3s ease, color .3s ease;
 }
 
-img { border-radius: .5rem; }
+img { 
+  border-radius: .5rem; 
+}
 
 /* ==========================================
    NAVBAR
 ========================================== */
 #mainNavbar {
-  transition: transform .35s ease;
+  transition: all 0.4s ease;
+  background: transparent !important;
+  border-bottom: 1px solid transparent !important;
 }
 
-html[data-bs-theme="dark"] #mainNavbar {
-  background: rgb(0, 0, 0);
-  border-bottom: 1px solid #222222;
+#mainNavbar.scrolled {
+  background: rgba(24, 24, 24, 0.801) !important;
+  border-bottom: 1px solid #222222 !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
 }
-html[data-bs-theme="light"] #mainNavbar {
-  background: rgb(255, 255, 255);
-  border-bottom: 1px solid #ddd;
+
+html[data-bs-theme="light"] #mainNavbar.scrolled {
+  background: rgba(255, 255, 255, 0.801) !important;
+  border-bottom: 1px solid #ddd !important;
+}
+
+/* Ajuste para os links na navbar transparente */
+#mainNavbar:not(.scrolled) .navbar-brand,
+#mainNavbar:not(.scrolled) .nav-link,
+#mainNavbar:not(.scrolled) .btn-outline-success {
+  color: white !important;
+}
+
+#mainNavbar:not(.scrolled) .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+#mainNavbar:not(.scrolled) .btn-outline-success {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#mainNavbar:not(.scrolled) .btn-outline-success:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
 }
 
 .navbar .nav-link {
@@ -38,10 +65,52 @@ html[data-bs-theme="light"] #mainNavbar {
    HERO
 ========================================== */
 .hero {
-  height: 90vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('https://upload.wikimedia.org/wikipedia/commons/0/0d/Dinosaur_landscape.jpg') center/cover;
+  height: 100vh;
+  min-height: 600px;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+              url('img/mesozoico.webp') center/cover no-repeat;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a472a 0%, #2d4a2d 100%);
+  z-index: -1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1, 
+.hero .lead, 
+.hero p {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Correção da cor do título no modo claro */
+html[data-bs-theme="light"] .hero h1,
+html[data-bs-theme="light"] .hero .lead,
+html[data-bs-theme="light"] .hero p {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================
+   MAIN
+========================================== */
+main {
+  padding-top: 2rem;
 }
 
 /* ==========================================
@@ -53,10 +122,50 @@ html[data-bs-theme="light"] #mainNavbar {
   border: none;
   transition: transform .3s ease, box-shadow .3s ease;
   border-radius: 1rem;
+  height: 100%;
 }
 .periodo-card:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Imagens dos cards com tamanho consistente */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 0.5rem 0.5rem 0 0 !important; /* Apenas topo arredondado */
+  border-bottom: none !important; /* Remove qualquer borda na base */
+}
+
+/* Garantir que o conteúdo dos cards tenha altura consistente */
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  flex-grow: 1;
+}
+
+/* ==========================================
+   SEÇÕES
+========================================== */
+section {
+  margin-bottom: 4rem;
+}
+
+/* Ajuste para a seção de fatos rápidos */
+.facts-card {
+  height: 100%;
+}
+
+/* Imagem central reduzida */
+.img-central {
+  max-height: 400px;
+  width: auto;
+  margin: 0 auto;
+  display: block;
 }
 
 /* ==========================================
@@ -110,10 +219,15 @@ html[data-bs-theme="light"] .card {
 }
 
 /* NavBar clara */
-html[data-bs-theme="light"] .navbar {
-  background-color: rgba(255,255,255,0.85) !important;
+html[data-bs-theme="light"] .navbar.scrolled {
+  background-color: rgba(255,255,255,0.95) !important;
   border-bottom: 1px solid #d0d0d5 !important;
   backdrop-filter: blur(8px);
+}
+
+/* Melhor contraste para texto em modo claro */
+html[data-bs-theme="light"] .text-secondary {
+  color: #444 !important;
 }
 
 /* ========================================
@@ -134,29 +248,15 @@ html[data-bs-theme="dark"] .card {
 }
 
 /* NavBar escura */
-html[data-bs-theme="dark"] .navbar {
-  background-color: rgba(0, 0, 0, 0.85) !important;
+html[data-bs-theme="dark"] .navbar.scrolled {
+  background-color: rgba(24, 24, 24, 0.95) !important;
   border-bottom: 1px solid #2d2f33 !important;
   backdrop-filter: blur(8px);
 }
 
 /* ======================================
-   CORREÇÃO DO TÍTULO DO HEADER
+   TÍTULOS
 ====================================== */
-
-/* Tema claro: título deve ficar escuro */
-html[data-bs-theme="light"] .hero-title,
-html[data-bs-theme="light"] header h1,
-html[data-bs-theme="light"] h1.page-title {
-  color: #1b1b1d !important;
-}
-
-/* Tema escuro: título deve ficar claro */
-html[data-bs-theme="dark"] .hero-title,
-html[data-bs-theme="dark"] header h1,
-html[data-bs-theme="dark"] h1.page-title {
-  color: #ffffff !important;
-}
 
 .titulo{
   display: flex;
@@ -167,4 +267,24 @@ html[data-bs-theme="dark"] h1.page-title {
   font-size:xx-large;
   background-color: rgb(4, 97, 39);
   border-radius: 40px;
+}
+
+/* Ajuste para o título da era mesozoica */
+#era-mesozoica {
+  margin-top: 2rem;
+}
+
+/* Ajustes para cards de dinossauros */
+.periodo-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.periodo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Estilo para fatos rápidos */
+.facts-card {
+  height: 100%;
 }

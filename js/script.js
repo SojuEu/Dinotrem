@@ -37,15 +37,32 @@
 
 })();
 
-
-
+// === NAVBAR SCROLL EFFECT ===
+(function() {
+  const navbar = document.getElementById("mainNavbar");
+  const scrollThreshold = 100; // Quantidade de scroll para ativar a mudança
+  
+  function updateNavbar() {
+    if (window.scrollY > scrollThreshold) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
+  
+  // Atualiza ao carregar a página
+  updateNavbar();
+  
+  // Atualiza ao rolar
+  window.addEventListener("scroll", updateNavbar);
+})();
 
 // === NAVBAR HIDE ON SCROLL ===
 let lastScroll = 0;
-const navbar = document.getElementById("mainNavbar");
 
 window.addEventListener("scroll", () => {
   const currentScroll = window.scrollY;
+  const navbar = document.getElementById("mainNavbar");
 
   if (currentScroll > lastScroll && currentScroll > 80) {
     navbar.style.transform = "translateY(-100%)";
