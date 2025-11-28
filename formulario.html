@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-bs-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contato | Dinotrem</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinotrem | Contato </title>
+
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+
+  <nav class="navbar navbar-expand-lg fixed-top bg-dark border-bottom border-success">
     <div class="container py-2">
       <a class="navbar-brand fw-bold text-uppercase text-success fs-3" href="index.html">
         <i class="bi bi-tree-fill me-2"></i>Dinotrem
       </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-          <li class="nav-item"><a class="nav-link px-3" href="triassico.html">Triássico</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="jurassico.html">Jurássico</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="cretaceo.html">Cretáceo</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="enciclopedia.html">Enciclopédia</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="dino-mes.html">Dinossauro do Mês</a></li>
-          <li class="nav-item"><a class="nav-link px-3 active" href="formulario.html">Contato</a></li>
+        <ul class="navbar-nav ms-auto gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="triassico.html">Triássico</a></li>
+          <li class="nav-item"><a class="nav-link" href="jurassico.html">Jurássico</a></li>
+          <li class="nav-item"><a class="nav-link" href="cretaceo.html">Cretáceo</a></li>
+          <li class="nav-item"><a class="nav-link" href="enciclopedia.html">Enciclopédia</a></li>
+          <li class="nav-item"><a class="nav-link" href="dino-mes.html">Dinossauro do Mês</a></li>
+          <li class="nav-item"><a class="nav-link active" href="formulario.html">Contato</a></li>
         </ul>
       </div>
     </div>
@@ -37,20 +42,26 @@
 
   <main class="container py-4" style="max-width: 700px;">
     <form action="resultado.html" method="GET" class="p-4 rounded shadow bg-dark border-success">
+
       <h4 class="text-success mb-3"><i class="bi bi-envelope me-2"></i>Formulário de Contato</h4>
 
       <div class="mb-3">
-        <label class="form-label">Nome</label>
-        <input type="text" name="nome" class="form-control" required>
+        <label class="form-label">Nome Completo *</label>
+        <input type="text" name="nome" required class="form-control" minlength="3">
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" required>
+        <label class="form-label">Email *</label>
+        <input type="email" name="email" required class="form-control">
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Assunto</label>
+        <label class="form-label">Telefone (opcional)</label>
+        <input type="tel" name="telefone" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Assunto *</label>
         <select class="form-control" name="assunto" required>
           <option value="Contato Geral">Contato Geral</option>
           <option value="Relatar Fóssil ou Meteorito">Relatar Fóssil ou Meteorito</option>
@@ -60,8 +71,31 @@
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Mensagem</label>
-        <textarea class="form-control" name="mensagem" rows="5" required></textarea>
+        <label class="form-label">Tipo de achado (se aplicável)</label>
+        <select class="form-control" name="tipo">
+          <option value="Não se aplica">Não se aplica</option>
+          <option value="Fóssil">Fóssil</option>
+          <option value="Meteorito">Meteorito</option>
+          <option value="Ossada moderna">Ossada moderna</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Localização do achado (opcional)</label>
+        <input type="text" name="local" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Permite contato posterior?</label>
+        <select class="form-control" name="contato">
+          <option value="Sim">Sim</option>
+          <option value="Não">Não</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Mensagem *</label>
+        <textarea class="form-control" name="mensagem" rows="5" required minlength="10"></textarea>
       </div>
 
       <button class="btn btn-success w-100">Enviar Mensagem</button>

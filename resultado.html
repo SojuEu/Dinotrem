@@ -1,46 +1,278 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-bs-theme="dark">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resultado | Dinotrem</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dinotrem | Informações Coletadas</title>
+
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <style>
+    
+    .result-hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/mesozoico.webp') center/cover no-repeat !important;
+      padding: 80px 0;
+      color: white;
+      text-align: center;
+    }
+
+    .result-card {
+      background: #0c0f11; 
+      border: 1px solid rgba(46, 125, 50, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(2, 6, 10, 0.6);
+    }
+
+    .result-list .list-group-item {
+      background: transparent;
+      border: 1px solid rgba(46, 125, 50, 0.12);
+      color: #dadada;
+    }
+
+    .result-list .label {
+      color: #8bd99a;
+      font-weight: 700;
+      min-width: 160px;
+      display: inline-block;
+    }
+
+    .section-title {
+      color: #8bd99a;
+      font-weight: 700;
+    }
+
+    .small-muted {
+      color: #9aa3a0;
+    }
+
+    @media (max-width: 576px) {
+      .result-hero { padding: 50px 0; }
+    }
+  </style>
 </head>
+
 <body>
+
   <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
     <div class="container py-2">
       <a class="navbar-brand fw-bold text-uppercase text-success fs-3" href="index.html">
         <i class="bi bi-tree-fill me-2"></i>Dinotrem
       </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link px-3" href="triassico.html">Triássico</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="jurassico.html">Jurássico</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="cretaceo.html">Cretáceo</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="enciclopedia.html">Enciclopédia</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="dino-mes.html">Dinossauro do Mês</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="formulario.html">Contato</a></li>
+        </ul>
+
+        <div class="dropdown ms-lg-3 mt-3 mt-lg-0">
+          <button class="btn btn-outline-success dropdown-toggle" type="button" id="themeToggle"
+            data-bs-toggle="dropdown" style="border: none;">
+            <i class="bi bi-circle-half"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button class="dropdown-item" data-theme="auto">Padrão do sistema</button></li>
+            <li><button class="dropdown-item" data-theme="light">Claro</button></li>
+            <li><button class="dropdown-item" data-theme="dark">Escuro</button></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <main class="container py-5 mt-5 text-center">
-    <div class="p-4 bg-dark border-success rounded shadow" style="max-width: 700px; margin:auto;">
-      <h2 class="text-success mb-3">Mensagem Enviada!</h2>
-      <p class="text-secondary">Aqui estão os dados recebidos:</p>
-      <ul class="list-group text-start mt-4">
-        <li class="list-group-item bg-dark text-light border-success"><strong>Nome:</strong> <span id="rNome"></span></li>
-        <li class="list-group-item bg-dark text-light border-success"><strong>Email:</strong> <span id="rEmail"></span></li>
-        <li class="list-group-item bg-dark text-light border-success"><strong>Assunto:</strong> <span id="rAssunto"></span></li>
-        <li class="list-group-item bg-dark text-light border-success"><strong>Mensagem:</strong> <span id="rMsg"></span></li>
-      </ul>
-      <a href="formulario.html" class="btn btn-outline-success mt-4">Enviar outra mensagem</a>
+  
+  <header class="result-hero d-flex align-items-center justify-content-center text-center text-white" style="margin-top:56px">
+    <div class="container">
+      <h1 class="display-5 fw-bold mb-2">Mensagem Recebida</h1>
+      <p class="lead fs-5 mb-0">Obrigado — sua submissão foi registrada no Dinotrem.</p>
+      <p class="small-muted mt-2">Abaixo você vê todas as informações enviadas.</p>
     </div>
+  </header>
+
+  <main class="container py-5">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        <div class="p-4 result-card">
+
+       
+          <div class="d-flex align-items-center mb-3">
+            <div class="me-3">
+              <i class="bi bi-check2-circle text-success" style="font-size: 2rem;"></i>
+            </div>
+            <div>
+              <h4 class="mb-0 section-title">Dados Recebidos</h4>
+              <small class="small-muted">Verifique abaixo todos os campos que você enviou</small>
+            </div>
+          </div>
+
+          
+          <div class="mb-4">
+            <h5 class="text-success">Informações pessoais</h5>
+            <ul class="list-group list-group-flush result-list mt-2">
+              <li class="list-group-item"><span class="label">Nome:</span> <span id="rNome"></span></li>
+              <li class="list-group-item"><span class="label">Email:</span> <span id="rEmail"></span></li>
+              <li class="list-group-item"><span class="label">Telefone:</span> <span id="rTel"></span></li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <h5 class="text-success">Detalhes do contato</h5>
+            <ul class="list-group list-group-flush result-list mt-2">
+              <li class="list-group-item"><span class="label">Assunto:</span> <span id="rAssunto"></span></li>
+              <li class="list-group-item"><span class="label">Permissão para contato:</span> <span id="rPermissao"></span></li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <h5 class="text-success">Sobre o achado</h5>
+            <ul class="list-group list-group-flush result-list mt-2">
+              <li class="list-group-item"><span class="label">Tipo de achado:</span> <span id="rAchado"></span></li>
+              <li class="list-group-item"><span class="label">Localização:</span> <span id="rLocal"></span></li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <h5 class="text-success">Mensagem</h5>
+            <div class="card bg-dark border-success text-light p-3">
+              <p id="rMsg" class="mb-0" style="white-space: pre-wrap;"></p>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 justify-content-end mt-3">
+            <a href="formulario.html" class="btn btn-outline-success"><i class="bi bi-arrow-left-circle me-1"></i>Voltar</a>
+            <button id="btnPdf" class="btn btn-success"><i class="bi bi-file-earmark-pdf-fill me-1"></i>Exportar PDF</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
   </main>
+
+ 
+  <footer class="mt-5 pt-5 pb-4 text-light" style="background: linear-gradient(90deg,#1a472a,#2d4a2d);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <h4 class="fw-bold"><i class="bi bi-tree-fill me-2"></i>Dinotrem</h4>
+          <p class="small">
+            © 2025 Dinotrem. Explore o fascinante mundo dos dinossauros e da paleontologia.
+          </p>
+          <div class="mt-3">
+            <a href="#" class="text-light me-2"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-twitter fs-5"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" class="text-light"><i class="bi bi-youtube fs-5"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Períodos</h5>
+          <ul class="list-unstyled small">
+            <li><a href="triassico.html" class="text-light text-decoration-none">Triássico (252–201 Ma)</a></li>
+            <li><a href="jurassico.html" class="text-light text-decoration-none">Jurássico (201–145 Ma)</a></li>
+            <li><a href="cretaceo.html" class="text-light text-decoration-none">Cretáceo (145–66 Ma)</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Recursos</h5>
+          <ul class="list-unstyled small">
+            <li><a href="enciclopedia.html" class="text-light text-decoration-none">Enciclopédia</a></li>
+            <li><a href="dino-mes.html" class="text-light text-decoration-none">Votação do Mês</a></li>
+            <li><a href="formulario.html" class="text-light text-decoration-none">Contato</a></li>
+            <li><a href="#" class="text-light text-decoration-none">Submissões</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Informações</h5>
+          <ul class="list-unstyled small">
+            <li><i class="bi bi-journal-text"></i> Baseado em pesquisas científicas</li>
+            <li><i class="bi bi-mortarboard"></i> Conteúdo educativo</li>
+            <li><i class="bi bi-people"></i> Comunidade de paleontologia</li>
+            <li><i class="bi bi-globe"></i> Acesso mundial</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="border-light" />
+      <p class="text-center small"><i class="bi bi-heart-fill text-danger"></i> Educação • Ciência • Descoberta</p>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script>
     const params = new URLSearchParams(window.location.search);
+    const get = (k) => {
+      const v = params.get(k);
+      if (!v) return "(não informado)";
+      return v.replaceAll('+', ' ');
+    };
 
-    const getOrDefault = (key) => params.get(key) ? params.get(key) : "(não informado)";
+    document.getElementById('rNome').textContent = decodeURIComponent(get('nome'));
+    document.getElementById('rEmail').textContent = decodeURIComponent(get('email'));
+    document.getElementById('rTel').textContent = decodeURIComponent(get('telefone'));
+    document.getElementById('rAssunto').textContent = decodeURIComponent(get('assunto'));
+    document.getElementById('rPermissao').textContent = decodeURIComponent(get('contato'));
+    document.getElementById('rAchado').textContent = decodeURIComponent(get('tipo'));
+    document.getElementById('rLocal').textContent = decodeURIComponent(get('local'));
+    document.getElementById('rMsg').textContent = decodeURIComponent(get('mensagem'));
 
-    document.getElementById('rNome').textContent = getOrDefault('nome');
-    document.getElementById('rEmail').textContent = getOrDefault('email');
-    document.getElementById('rAssunto').textContent = getOrDefault('assunto');
-    document.getElementById('rMsg').textContent = getOrDefault('mensagem');
-</script>
-  <script src="js/bootstrap.bundle.min.js"></script>
+    // Gerar PDF simples (mantém estilo básico)
+    document.getElementById('btnPdf').addEventListener('click', () => {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+
+      const title = 'Relatório Dinotrem';
+      pdf.setFontSize(18);
+      pdf.text(title, 40, 60);
+
+      pdf.setFontSize(12);
+      let y = 100;
+      const addLine = (label, value) => {
+        pdf.setFont(undefined, 'bold');
+        pdf.text(label + ':', 40, y);
+        pdf.setFont(undefined, 'normal');
+        pdf.text(String(value), 150, y);
+        y += 20;
+      };
+
+      addLine('Nome', document.getElementById('rNome').textContent);
+      addLine('Email', document.getElementById('rEmail').textContent);
+      addLine('Telefone', document.getElementById('rTel').textContent);
+      addLine('Assunto', document.getElementById('rAssunto').textContent);
+      addLine('Permite contato', document.getElementById('rPermissao').textContent);
+      addLine('Tipo de achado', document.getElementById('rAchado').textContent);
+      addLine('Localização', document.getElementById('rLocal').textContent);
+
+      y += 10;
+      pdf.setFont(undefined, 'bold');
+      pdf.text('Mensagem:', 40, y);
+      pdf.setFont(undefined, 'normal');
+      const texto = document.getElementById('rMsg').textContent || '';
+      const splitted = pdf.splitTextToSize(texto, 480);
+      pdf.text(splitted, 40, y + 20);
+
+      pdf.save('dinotrem_relatorio.pdf');
+    });
+  </script>
 </body>
+
 </html>
