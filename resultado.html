@@ -11,24 +11,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
   <style>
-    
-    .result-hero {
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/mesozoico.webp') center/cover no-repeat !important;
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/fundo-forms.jpg') center/cover no-repeat !important;
       padding: 80px 0;
       color: white;
-      text-align: center;
     }
 
     .result-card {
-      background: #0c0f11; 
-      border: 1px solid rgba(46, 125, 50, 0.9);
+      background: #0c0f11;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(2, 6, 10, 0.6);
     }
 
     .result-list .list-group-item {
       background: transparent;
-      border: 1px solid rgba(46, 125, 50, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.12);
       color: #dadada;
     }
 
@@ -49,7 +46,107 @@
     }
 
     @media (max-width: 576px) {
-      .result-hero { padding: 50px 0; }
+      .result-hero {
+        padding: 50px 0;
+      }
+    }
+
+    /* ==========================================
+   CORREÇÕES PARA A PÁGINA DE RESULTADOS
+   (Adicionar ao FINAL do style existente)
+========================================== */
+
+
+    html[data-bs-theme="light"] .result-card {
+      background: #ffffff !important;
+      border: 1px solid rgba(46, 125, 50, 0.3) !important;
+      color: #1b1b1d !important;
+    }
+
+    html[data-bs-theme="light"] .result-list .list-group-item {
+      background: transparent !important;
+      border: 1px solid rgba(46, 125, 50, 0.1) !important;
+      color: #1b1b1d !important;
+    }
+
+    html[data-bs-theme="light"] .result-list .label {
+      color: #198754 !important;
+    }
+
+    html[data-bs-theme="light"] .section-title {
+      color: #198754 !important;
+    }
+
+    html[data-bs-theme="light"] .small-muted {
+      color: #666 !important;
+    }
+
+    html[data-bs-theme="light"] .card.bg-dark {
+      background: #f8f9fa !important;
+      color: #1b1b1d !important;
+      border: 1px solid rgba(46, 125, 50, 0.2) !important;
+    }
+
+    /* Navbar transparente no topo - TEMA CLARO */
+    html[data-bs-theme="light"] #mainNavbar:not(.scrolled) .navbar-brand,
+    html[data-bs-theme="light"] #mainNavbar:not(.scrolled) .nav-link,
+    html[data-bs-theme="light"] #mainNavbar:not(.scrolled) .btn-outline-success {
+      color: white !important;
+    }
+
+    html[data-bs-theme="light"] #mainNavbar:not(.scrolled) .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    html[data-bs-theme="light"] #mainNavbar:not(.scrolled) .btn-outline-success {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    html[data-bs-theme="light"] #mainNavbar:not(.scrolled) .btn-outline-success:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: white;
+    }
+
+    /* Garantir que a navbar scrolled no tema claro tenha fundo branco */
+    html[data-bs-theme="light"] #mainNavbar.scrolled {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border-bottom: 1px solid #d0d0d5 !important;
+    }
+
+    /* Texto escuro quando a navbar está scrolled no tema claro */
+    html[data-bs-theme="light"] #mainNavbar.scrolled .navbar-brand,
+    html[data-bs-theme="light"] #mainNavbar.scrolled .nav-link,
+    html[data-bs-theme="light"] #mainNavbar.scrolled .btn-outline-success {
+      color: #1b1b1d !important;
+    }
+
+    html[data-bs-theme="light"] #mainNavbar.scrolled .btn-outline-success {
+      border-color: #198754;
+      color: #198754;
+    }
+
+    html[data-bs-theme="light"] #mainNavbar.scrolled .btn-outline-success:hover {
+      background-color: #198754;
+      color: white;
+    }
+
+    /* ==========================================
+   CORREÇÃO DO ESPAÇO EXTRA NO FOOTER
+========================================== */
+
+    /* Remove espaço extra abaixo do footer */
+    body {
+      padding-bottom: 0 !important;
+    }
+
+    /* Ajusta o footer para não criar espaço extra */
+    footer {
+      margin-top: 0 !important;
+    }
+
+    /* Remove qualquer padding extra que possa estar criando espaço */
+    main.container.py-5 {
+      padding-bottom: 2rem !important;
     }
   </style>
 </head>
@@ -91,12 +188,13 @@
     </div>
   </nav>
 
-  
-  <header class="result-hero d-flex align-items-center justify-content-center text-center text-white" style="margin-top:56px">
+
+  <header class="result-hero d-flex align-items-center justify-content-center text-center text-white"
+    style="margin-top:56px">
     <div class="container">
       <h1 class="display-5 fw-bold mb-2">Mensagem Recebida</h1>
       <p class="lead fs-5 mb-0">Obrigado — sua submissão foi registrada no Dinotrem.</p>
-      <p class="small-muted mt-2">Abaixo você vê todas as informações enviadas.</p>
+      <p class="text-light mt-2">Abaixo você vê todas as informações enviadas.</p>
     </div>
   </header>
 
@@ -107,7 +205,7 @@
 
         <div class="p-4 result-card">
 
-       
+
           <div class="d-flex align-items-center mb-3">
             <div class="me-3">
               <i class="bi bi-check2-circle text-success" style="font-size: 2rem;"></i>
@@ -118,7 +216,7 @@
             </div>
           </div>
 
-          
+
           <div class="mb-4">
             <h5 class="text-success">Informações pessoais</h5>
             <ul class="list-group list-group-flush result-list mt-2">
@@ -132,7 +230,8 @@
             <h5 class="text-success">Detalhes do contato</h5>
             <ul class="list-group list-group-flush result-list mt-2">
               <li class="list-group-item"><span class="label">Assunto:</span> <span id="rAssunto"></span></li>
-              <li class="list-group-item"><span class="label">Permissão para contato:</span> <span id="rPermissao"></span></li>
+              <li class="list-group-item"><span class="label">Permissão para contato:</span> <span
+                  id="rPermissao"></span></li>
             </ul>
           </div>
 
@@ -152,8 +251,10 @@
           </div>
 
           <div class="d-flex gap-2 justify-content-end mt-3">
-            <a href="formulario.html" class="btn btn-outline-success"><i class="bi bi-arrow-left-circle me-1"></i>Voltar</a>
-            <button id="btnPdf" class="btn btn-success"><i class="bi bi-file-earmark-pdf-fill me-1"></i>Exportar PDF</button>
+            <a href="formulario.html" class="btn btn-outline-success"><i
+                class="bi bi-arrow-left-circle me-1"></i>Voltar</a>
+            <button id="btnPdf" class="btn btn-success"><i class="bi bi-file-earmark-pdf-fill me-1"></i>Exportar
+              PDF</button>
           </div>
 
         </div>
@@ -163,7 +264,7 @@
 
   </main>
 
- 
+
   <footer class="mt-5 pt-5 pb-4 text-light" style="background: linear-gradient(90deg,#1a472a,#2d4a2d);">
     <div class="container">
       <div class="row">
@@ -216,6 +317,7 @@
   </footer>
 
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script>

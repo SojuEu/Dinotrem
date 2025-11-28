@@ -379,3 +379,97 @@ select:focus, select:focus-visible {
     outline: none !important;
     box-shadow: none !important;
 }
+
+/* ==========================================
+   CORREÇÕES PARA DISTRIBUIÇÃO DE TEMAS
+   (Adicionar ao FINAL do arquivo CSS)
+========================================== */
+
+/* Reset e organização das variáveis de tema */
+:root {
+  /* Tema Escuro (padrão) */
+  --dark-bg: #0d0f12;
+  --dark-text: #e4e4e6;
+  --dark-card: #181a1d;
+  --dark-card-text: #ededed;
+  --dark-border: #2a2d31;
+  --dark-navbar: rgba(24, 24, 24, 0.95);
+  --dark-navbar-border: #2d2f33;
+
+  /* Tema Claro */
+  --light-bg: #f3f4f6;
+  --light-text: #1b1b1d;
+  --light-card: #ffffff;
+  --light-card-text: #1b1b1d;
+  --light-border: #d8d8dd;
+  --light-navbar: rgba(255, 255, 255, 0.95);
+  --light-navbar-border: #d0d0d5;
+  
+  /* Cores comuns */
+  --success: #198754;
+  --secondary-text: #444;
+}
+
+/* Aplicação consistente dos temas */
+html[data-bs-theme="dark"] body {
+  background-color: var(--dark-bg) !important;
+  color: var(--dark-text) !important;
+}
+
+html[data-bs-theme="light"] body {
+  background-color: var(--light-bg) !important;
+  color: var(--light-text) !important;
+}
+
+/* Cards em ambos os temas */
+html[data-bs-theme="dark"] .periodo-card,
+html[data-bs-theme="dark"] .card {
+  background-color: var(--dark-card) !important;
+  border: 1px solid var(--dark-border) !important;
+  color: var(--dark-card-text) !important;
+}
+
+html[data-bs-theme="light"] .periodo-card,
+html[data-bs-theme="light"] .card {
+  background-color: var(--light-card) !important;
+  border: 1px solid var(--light-border) !important;
+  color: var(--light-card-text) !important;
+}
+
+/* Navbar scrolled em ambos os temas */
+html[data-bs-theme="dark"] .navbar.scrolled {
+  background-color: var(--dark-navbar) !important;
+  border-bottom: 1px solid var(--dark-navbar-border) !important;
+}
+
+html[data-bs-theme="light"] .navbar.scrolled {
+  background-color: var(--light-navbar) !important;
+  border-bottom: 1px solid var(--light-navbar-border) !important;
+}
+
+/* Texto secundário com melhor contraste */
+html[data-bs-theme="light"] .text-secondary {
+  color: var(--secondary-text) !important;
+}
+
+/* Formulário de contato */
+html[data-bs-theme="light"] form.bg-dark {
+  background-color: var(--light-card) !important;
+  color: var(--light-card-text) !important;
+  border-color: var(--light-border) !important;
+}
+
+html[data-bs-theme="dark"] form.bg-dark {
+  background-color: var(--dark-card) !important;
+  color: var(--dark-card-text) !important;
+  border-color: var(--dark-border) !important;
+}
+
+/* Labels do formulário */
+html[data-bs-theme="light"] .form-label {
+  color: var(--light-text) !important;
+}
+
+html[data-bs-theme="dark"] .form-label {
+  color: var(--dark-text) !important;
+}

@@ -40,7 +40,7 @@
 // === NAVBAR SCROLL EFFECT ===
 (function() {
   const navbar = document.getElementById("mainNavbar");
-  const scrollThreshold = 100; // Quantidade de scroll para ativar a mudança
+  const scrollThreshold = 20; // Quantidade de scroll para ativar a mudança
   
   function updateNavbar() {
     if (window.scrollY > scrollThreshold) {
