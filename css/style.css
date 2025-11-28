@@ -288,3 +288,94 @@ html[data-bs-theme="dark"] .navbar.scrolled {
 .facts-card {
   height: 100%;
 }
+
+/* ==========================================
+   REMOÇÃO RADICAL DE TODOS OS EFEITOS AZUIS
+========================================== */
+
+/* Remove TODOS os outlines e box-shadows de TODOS os elementos */
+*, *:focus, *:focus-visible, *:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove especificamente do Bootstrap */
+.btn:focus, .btn:active:focus, .btn:focus-visible,
+.form-control:focus, .form-control:focus-visible,
+.form-select:focus, .form-select:focus-visible,
+.form-check-input:focus, .form-check-input:focus-visible,
+.dropdown-toggle:focus, .dropdown-toggle:focus-visible,
+.accordion-button:focus, .accordion-button:focus-visible,
+.nav-link:focus, .nav-link:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+}
+
+/* Remove bordas específicas da barra de pesquisa */
+.form-control {
+    border: 1px solid #495057 !important;
+}
+
+.form-control:focus {
+    border-color: #198754 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+/* Remove completamente do dropdown de tema */
+#themeToggle:focus,
+#themeToggle:active,
+#themeToggle:focus-visible {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+/* Remove do navbar-toggler */
+.navbar-toggler:focus,
+.navbar-toggler:focus-visible {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Remove dos cards e elementos interativos */
+.card:focus, .card:focus-visible {
+    outline: none !important;
+}
+
+/* Remove dos botões especificamente */
+.btn:focus, .btn:focus-visible {
+    background-color: inherit !important;
+    border-color: inherit !important;
+    color: inherit !important;
+}
+
+/* Remove dos links da navbar */
+.navbar .nav-link:focus,
+.navbar .nav-link:focus-visible {
+    color: inherit !important;
+    background-color: transparent !important;
+}
+
+/* Remove dos itens do dropdown */
+.dropdown-item:focus,
+.dropdown-item:focus-visible {
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+/* Remove do accordion (perguntas frequentes) */
+.accordion-button:focus,
+.accordion-button:focus-visible {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Garante que inputs não tenham contorno azul */
+input:focus, input:focus-visible,
+textarea:focus, textarea:focus-visible,
+select:focus, select:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
