@@ -106,6 +106,38 @@
             margin-bottom: 1rem;
             opacity: 0.5;
         }
+
+        /* Versão simplificada - texto branco no modal */
+        #dinoModal .modal-content {
+            background-color: var(--bs-dark);
+            color: white;
+        }
+
+        #dinoModal .modal-body,
+        #dinoModal .modal-body *:not(.text-success):not(.text-warning):not(.text-danger):not(.text-info) {
+            color: white !important;
+        }
+
+        #dinoModal .text-secondary {
+            color: #dee2e6 !important;
+        }
+
+        #dinoModal .list-group-item {
+            background-color: transparent !important;
+            color: #dee2e6 !important;
+            border-color: #495057 !important;
+        }
+
+        /* Para o tema claro */
+        html[data-bs-theme="light"] #dinoModal .modal-content {
+            background-color: white;
+            color: var(--bs-dark);
+        }
+
+        html[data-bs-theme="light"] #dinoModal .modal-body,
+        html[data-bs-theme="light"] #dinoModal .modal-body *:not(.text-success):not(.text-warning):not(.text-danger):not(.text-info) {
+            color: var(--bs-dark) !important;
+        }
     </style>
 </head>
 
@@ -361,7 +393,7 @@
                 peso: "4 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1837 por Hermann von Meyer",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Plateosaurus_1DB.jpg",
+                imagem: "img/plateo.webp",
                 descricao: "O Plateosaurus foi um dos primeiros grandes dinossauros herbívoros e um dos prosaurópodes mais bem estudados. Era um animal de médio a grande porte que podia caminhar tanto sobre duas quanto sobre quatro patas.",
                 descricaoLonga: `
           <p>O <strong>Plateosaurus engelhardti</strong> foi um dos primeiros dinossauros de grande porte a evoluir, representando um importante passo na direção dos gigantescos saurópodes do Jurássico. Com 8-10 metros de comprimento e pesando até 4 toneladas, era um herbívoro eficiente do Triássico Superior.</p>
@@ -393,7 +425,7 @@
                 peso: "15-30 kg",
                 alimentacao: "carnivoro",
                 descoberta: "1889 por Edward Drinker Cope",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/5/56/Coelophysis_BW.jpg",
+                imagem: "img/coelophysis1.jpg",
                 descricao: "O Coelophysis foi um dos primeiros terópodes, conhecido por seus fósseis excepcionalmente preservados que revelam detalhes sobre sua anatomia e possivelmente seu comportamento canibal.",
                 descricaoLonga: `
           <p>O <strong>Coelophysis bauri</strong> é um dos dinossauros triássicos mais bem conhecidos, graças à descoberta de centenas de esqueletos excepcionalmente preservados no Sítio de Ghost Ranch, Novo México. Este pequeno terópode era um predador ágil e gracioso que viveu há aproximadamente 203 milhões de anos.</p>
@@ -425,7 +457,7 @@
                 peso: "30-40 kg",
                 alimentacao: "carnivoro",
                 descoberta: "1970 por Llewellyn Ivor Price",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Staurikosaurus.jpg",
+                imagem: "img/stau.jpg",
                 descricao: "O Staurikosaurus foi um dos primeiros dinossauros carnívoros do Brasil e um dos mais antigos terópodes conhecidos. Seu nome homenageia a constelação do Cruzeiro do Sul.",
                 descricaoLonga: `
           <p>O <strong>Staurikosaurus pricei</strong> é um dos dinossauros brasileiros mais importantes, representando um dos primeiros terópodes conhecidos. Descoberto na Formação Santa Maria no Rio Grande do Sul, este pequeno predador viveu há aproximadamente 233 milhões de anos durante o Triássico Médio.</p>
@@ -457,7 +489,7 @@
                 peso: "2-3 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1969 por José Fernando Bonaparte",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Riojasaurus_NT.jpg/1280px-Riojasaurus_NT.jpg",
+                imagem: "img/riojasaurus1.jpg",
                 descricao: "O Riojasaurus foi um dos primeiros sauropodomorfos de grande porte, um herbívoro quadrúpede que viveu no que hoje é a Argentina durante o Triássico Superior.",
                 descricaoLonga: `
           <p>O <strong>Riojasaurus incertus</strong> foi um dos maiores dinossauros do Triássico Superior na América do Sul. Com 10-11 metros de comprimento e pesando 2-3 toneladas, este sauropodomorfo representava um passo importante em direção aos gigantescos saurópodes do Jurássico.</p>
@@ -489,7 +521,7 @@
                 peso: "28-58 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1900 por Elmer S. Riggs",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Brachiosaurus_BW.jpg/1280px-Brachiosaurus_BW.jpg",
+                imagem: "img/brachi.jpg",
                 descricao: "O Brachiosaurus foi um dos saurópodes mais icônicos, conhecido por seu pescoço extremamente longo e postura única com membros anteriores mais longos que os posteriores.",
                 descricaoLonga: `
           <p>O <strong>Brachiosaurus altithorax</strong> é um dos saurópodes mais emblemáticos do Jurássico Superior. Com 25-26 metros de comprimento e pesando entre 28-58 toneladas, este gigante era um dos maiores animais que já caminharam sobre a Terra.</p>
@@ -521,7 +553,7 @@
                 peso: "1-2 toneladas",
                 alimentacao: "carnivoro",
                 descoberta: "1877 por Othniel Charles Marsh",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Allosaurus_BW.jpg/1280px-Allosaurus_BW.jpg",
+                imagem: "img/allosaurus.jpg",
                 descricao: "O Allosaurus foi o predador de topo do Jurássico Superior na América do Norte. Ágil e poderoso, caçava grandes saurópodes e estegossauros em seu ecossistema.",
                 descricaoLonga: `
           <p>O <strong>Allosaurus fragilis</strong> foi o principal predador do Jurássico Superior na América do Norte e um dos terópodes mais bem estudados. Com 8-12 metros de comprimento e pesando 1-2 toneladas, este carnívoro era um caçador formidável e versátil.</p>
@@ -553,7 +585,7 @@
                 peso: "4-5 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1877 por Othniel Charles Marsh",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Stegosaurus_BW.jpg/1280px-Stegosaurus_BW.jpg",
+                imagem: "img/stego.jpg",
                 descricao: "O Stegosaurus é um dos dinossauros mais reconhecíveis, famoso por suas placas dorsais e espigões na cauda. Este herbívoro do Jurássico Superior é um ícone da paleontologia.",
                 descricaoLonga: `
           <p>O <strong>Stegosaurus stenops</strong> é um dos dinossauros mais icônicos, imediatamente reconhecível pelas impressionantes placas dorsais e espigões caudais. Com 7-9 metros de comprimento e pesando 4-5 toneladas, este herbívoro era um dos habitantes mais distintivos do Jurássico Superior.</p>
@@ -585,7 +617,7 @@
                 peso: "10-16 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1878 por Samuel Wendell Williston",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Diplodocus_BW.jpg/1280px-Diplodocus_BW.jpg",
+                imagem: "img/diplo.jpg",
                 descricao: "O Diplodocus foi um dos saurópodes mais longos, conhecido por seu pescoço e cauda extremamente longos. Usava a cauda como chicote para defesa e possivelmente comunicação.",
                 descricaoLonga: `
           <p>O <strong>Diplodocus carnegii</strong> foi um dos dinossauros mais longos que já existiram, com indivíduos adultos atingindo 25-33 metros de comprimento. Apesar de seu tamanho impressionante, era relativamente leve para um saurópode, pesando 10-16 toneladas.</p>
@@ -617,7 +649,7 @@
                 peso: "500-1000 kg",
                 alimentacao: "carnivoro",
                 descoberta: "1884 por Othniel Charles Marsh",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Ceratosaurus_BW.jpg/1280px-Ceratosaurus_BW.jpg",
+                imagem: "img/cera.jpg",
                 descricao: "O Ceratosaurus foi um terópode de médio porte com um chifre nasal distintivo. Mais ágil que o Allosaurus, possivelmente caçava presas menores ou adotava estratégias de caça diferentes.",
                 descricaoLonga: `
           <p>O <strong>Ceratosaurus nasicornis</strong> foi um terópode distintivo do Jurássico Superior, conhecido principalmente pelo <strong>chifre nasal proeminente</strong> que lhe deu o nome. Com 5-7 metros de comprimento e pesando 500-1000 kg, era menor que o contemporâneo Allosaurus mas possivelmente mais ágil.</p>
@@ -649,7 +681,7 @@
                 peso: "16-22 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1877 por Othniel Charles Marsh",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Apatosaurus_BW.jpg/1280px-Apatosaurus_BW.jpg",
+                imagem: "img/apa.jpg",
                 descricao: "O Apatosaurus, conhecido anteriormente como Brontossauro, era um saurópode maciço com pescoço e cauda longos, porém mais robusto que o Diplodocus.",
                 descricaoLonga: `
           <p>O <strong>Apatosaurus ajax</strong> é um dos saurópodes mais famosos do Jurássico Superior, conhecido por seu corpo maciço e cauda extremamente longa. Com 21-23 metros de comprimento e pesando 16-22 toneladas, era mais robusto que seu parente Diplodocus.</p>
@@ -681,7 +713,7 @@
                 peso: "8-14 toneladas",
                 alimentacao: "carnivoro",
                 descoberta: "1902 por Barnum Brown",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tyrannosaurus_rex_BW.jpg/1280px-Tyrannosaurus_rex_BW.jpg",
+                imagem: "img/tyty.webp",
                 descricao: "O Tyrannosaurus rex é provavelmente o dinossauro mais famoso de todos. Era um predador de topo no final do Cretáceo, com uma mordida extremamente poderosa e sentidos aguçados.",
                 descricaoLonga: `
           <p>O <strong>Tyrannosaurus rex</strong> é indiscutivelmente o dinossauro mais icônico que já existiu. Como um dos maiores predadores terrestres de todos os tempos, este terópode do Cretáceo Superior continua a fascinar cientistas e o público alike.</p>
@@ -713,7 +745,7 @@
                 peso: "6-12 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1887 por Othniel Charles Marsh",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Triceratops_BW.jpg/1280px-Triceratops_BW.jpg",
+                imagem: "img/triceratops.jpeg",
                 descricao: "O Triceratops foi um dos dinossauros mais reconhecíveis, com seu impressionante escudo cranial e três chifres. Era um dos últimos dinossauros a existir antes da extinção em massa.",
                 descricaoLonga: `
           <p>O <strong>Triceratops horridus</strong> é um dos dinossauros ceratopsídeos mais icônicos, imediatamente reconhecível pelo seu <strong>enorme escudo cranial e três chifres</strong>. Com 8-9 metros de comprimento e pesando 6-12 toneladas, era um dos maiores herbívoros do final do Cretáceo.</p>
@@ -745,7 +777,7 @@
                 peso: "15-20 kg",
                 alimentacao: "carnivoro",
                 descoberta: "1922 por Henry Fairfield Osborn",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Velociraptor_BW.jpg/1280px-Velociraptor_BW.jpg",
+                imagem: "img/velo.webp",
                 descricao: "O Velociraptor foi um pequeno predador emplumado da Ásia, conhecido por sua garra em foice no pé e inteligência notável para um dinossauro. Ficou famoso pelos filmes Jurassic Park.",
                 descricaoLonga: `
           <p>O <strong>Velociraptor mongoliensis</strong> foi um dos dinossauros dromaeossaurídeos mais famosos, conhecido por sua <strong>garra em foice no segundo dedo do pé</strong>. Ao contrário de sua representação nos filmes, era um animal relativamente pequeno, com 1,8-2 metros de comprimento e pesando apenas 15-20 kg.</p>
@@ -777,7 +809,7 @@
                 peso: "7-20 toneladas",
                 alimentacao: "carnivoro",
                 descoberta: "1912 por Ernst Stromer",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Spinosaurus_white_background.png/1280px-Spinosaurus_white_background.png",
+                imagem: "img/spino.webp",
                 descricao: "O Spinosaurus foi o maior dinossauro carnívoro conhecido e o primeiro dinossauro semi-aquático identificado. Sua vela dorsal distintiva e adaptações aquáticas o tornam único.",
                 descricaoLonga: `
           <p>O <strong>Spinosaurus aegyptiacus</strong> foi não apenas o maior dinossauro carnívoro conhecido, mas também o primeiro dinossauro identificado com adaptações para um <strong>estilo de vida semi-aquático</strong>. Com 15-18 metros de comprimento e pesando 7-20 toneladas, superava até o Tyrannosaurus rex em tamanho.</p>
@@ -809,7 +841,7 @@
                 peso: "4-8 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1906 por Barnum Brown",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Ankylosaurus_BW.jpg/1280px-Ankylosaurus_BW.jpg",
+                imagem: "img/anky.jpeg",
                 descricao: "O Ankylosaurus foi um herbívoro blindado com uma clava óssea na cauda capaz de quebrar ossos de predadores. Um verdadeiro tanque vivo do Cretáceo Superior.",
                 descricaoLonga: `
           <p>O <strong>Ankylosaurus magniventris</strong> foi o maior e mais famoso dos dinossauros anquilossaurídeos - herbívoros fortemente blindados conhecidos como 'tanques viventes' do Cretáceo. Com 6-8 metros de comprimento e pesando 4-8 toneladas, era uma presa formidável para qualquer predador.</p>
@@ -841,7 +873,7 @@
                 peso: "20-40 kg",
                 alimentacao: "carnivoro",
                 descoberta: "1876 por Othniel Charles Marsh",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Pteranodon_BW.jpg/1280px-Pteranodon_BW.jpg",
+                imagem: "img/pteranodon.jpg",
                 descricao: "O Pteranodon foi um dos maiores pterossauros, com envergadura de até 7 metros. Dominava os céus do Cretáceo Superior e se alimentava de peixes.",
                 descricaoLonga: `
           <p>O <strong>Pteranodon longiceps</strong> foi um dos pterossauros mais icônicos e bem estudados do Cretáceo Superior. Apesar de frequentemente ser confundido com dinossauros, os pterossauros formam um grupo distinto de répteis voadores que coexistiu com os dinossauros.</p>
@@ -873,7 +905,7 @@
                 peso: "65-80 toneladas",
                 alimentacao: "herbivoro",
                 descoberta: "1987 por Guillermo Heredia",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Argentinosaurus_NT.jpg/1280px-Argentinosaurus_NT.jpg",
+                imagem: "img/argentinossauro.jpeg",
                 descricao: "O Argentinossauro foi possivelmente o maior dinossauro que já existiu, um saurópode colossal que viveu na América do Sul durante o Cretáceo.",
                 descricaoLonga: `
           <p>O <strong>Argentinosaurus huinculensis</strong> é considerado um dos maiores dinossauros que já existiram, e possivelmente o maior animal terrestre de todos os tempos. Com estimativas de 30-35 metros de comprimento e pesando entre 65-80 toneladas, este saurópode titanossaurídeo era verdadeiramente colossal.</p>
@@ -905,7 +937,7 @@
                 peso: "70-100 kg",
                 alimentacao: "carnivoro",
                 descoberta: "1964 por John Ostrom",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Deinonychus_BW.jpg/1280px-Deinonychus_BW.jpg",
+                imagem: "img/deinonychus.jpg",
                 descricao: "O Deinonychus foi um dromaeossaurídeo de médio porte que revolucionou a compreensão dos dinossauros. Sua descoberta sugeriu que alguns dinossauros eram ativos e possivelmente de sangue quente.",
                 descricaoLonga: `
           <p>O <strong>Deinonychus antirrhopus</strong> foi um dos dinossauros mais importantes para a paleontologia moderna. Sua descoberta na década de 1960 pelo Dr. John Ostrom levou à 'Renascença dos Dinosauros' - uma revisão completa de como entendíamos esses animais.</p>
@@ -937,7 +969,7 @@
                 peso: "6-8 toneladas",
                 alimentacao: "carnivoro",
                 descoberta: "1993 por Rubén Carolini",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Giganotosaurus_BW.jpg/1280px-Giganotosaurus_BW.jpg",
+                imagem: "img/giga.jpg",
                 descricao: "O Giganotossauro foi um dos maiores dinossauros carnívoros, rivalizando em tamanho com o T. rex. Este predador sul-americano caçava os gigantescos saurópodes de sua época.",
                 descricaoLonga: `
           <p>O <strong>Giganotosaurus carolinii</strong> foi um dos maiores terópodes que já existiram, rivalizando em tamanho com o famoso Tyrannosaurus rex. Com 12-13 metros de comprimento e pesando 6-8 toneladas, este carcarodontossaurídeo era o predador de topo do Cretáceo Médio na América do Sul.</p>
@@ -969,7 +1001,7 @@
                 peso: "1,3-2,1 toneladas",
                 alimentacao: "carnivoro",
                 descoberta: "1984 por José Bonaparte",
-                imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Carnotaurus_BW.jpg/1280px-Carnotaurus_BW.jpg",
+                imagem: "img/carno.jpg",
                 descricao: "O Carnotauro foi um terópode único com chifres acima dos olhos e braços extremamente reduzidos. Este predador sul-americano era construído para velocidade.",
                 descricaoLonga: `
           <p>O <strong>Carnotaurus sastrei</strong> foi um dos terópodes mais distintivos do Cretáceo Superior. Seu nome, que significa 'Touro Carnívoro', refere-se aos chifres proeminentes acima de seus olhos, uma característica única entre os grandes terópodes.</p>
